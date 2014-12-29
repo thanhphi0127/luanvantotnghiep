@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Windows.Media;
 using ThapHaNoi_NguyenThanhPhi.Resources;
 
 namespace ThapHaNoi_NguyenThanhPhi
@@ -14,14 +15,39 @@ namespace ThapHaNoi_NguyenThanhPhi
     public partial class MainPage : PhoneApplicationPage
     {
         // Constructor
+        Sounds sounds = new Sounds();
         public MainPage()
         {
             InitializeComponent();
-
+            sounds.Play("main");
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
 
+        private void btn_Start_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            sounds.Play("click");
+            btn_Start.Background = new SolidColorBrush(Colors.White);
+            btn_Start.Background.Opacity = 0.5;
+            NavigationService.Navigate(new Uri("/ThapHaNoi.xaml", UriKind.Relative));
+        }
+
+
+
+        private void btn_MoreGame_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            btn_MoreGame.Background = new SolidColorBrush(Colors.White);
+            btn_MoreGame.Background.Opacity = 0.5;
+            NavigationService.Navigate(new Uri("/MoreGame.xaml", UriKind.Relative));
+        }
+
+
+        private void btnSound_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            btn_MoreGame.Background = new SolidColorBrush(Colors.White);
+            btn_MoreGame.Background.Opacity = 0.5;
+            NavigationService.Navigate(new Uri("/MoreGame.xaml", UriKind.Relative));
+        }
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()
         //{
