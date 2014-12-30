@@ -20,10 +20,15 @@ namespace ThapHaNoi_NguyenThanhPhi
         {
             InitializeComponent();
             sounds.Play("main");
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
         }
 
+        /*********************************************************************************
+         * 
+         * 
+         * 
+         * 
+         * 
+         *********************************************************************************/
         private void btn_Start_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
@@ -32,22 +37,60 @@ namespace ThapHaNoi_NguyenThanhPhi
             NavigationService.Navigate(new Uri("/ThapHaNoi.xaml", UriKind.Relative));
         }
 
-
-
+        /*********************************************************************************
+         * 
+         * 
+         * 
+         * 
+         * 
+         *********************************************************************************/
         private void btn_MoreGame_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            sounds.Play("click");
             btn_MoreGame.Background = new SolidColorBrush(Colors.White);
             btn_MoreGame.Background.Opacity = 0.5;
             NavigationService.Navigate(new Uri("/MoreGame.xaml", UriKind.Relative));
         }
 
-
+        /*********************************************************************************
+         * 
+         * 
+         * 
+         * 
+         * 
+         *********************************************************************************/
         private void btnSound_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            btn_MoreGame.Background = new SolidColorBrush(Colors.White);
-            btn_MoreGame.Background.Opacity = 0.5;
-            NavigationService.Navigate(new Uri("/MoreGame.xaml", UriKind.Relative));
+            sounds.Play("click");
+            sounds.Stop("main");
         }
+
+
+
+
+
+
+
+
+
+         /*********************************************************************************
+         * 
+         * 
+         * 
+         * 
+         * 
+         *********************************************************************************/
+
+
+        /*********************************************************************************
+        * 
+        * 
+        * 
+        * 
+        * 
+        *********************************************************************************/
+
+
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()
         //{
