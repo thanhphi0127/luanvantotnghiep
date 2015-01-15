@@ -19,6 +19,7 @@ namespace ThapHaNoi_NguyenThanhPhi
         SoundEffectInstance main, play, win, lose, click;
         public bool mute;
 
+
         public Sounds()
         {
             mute = false;
