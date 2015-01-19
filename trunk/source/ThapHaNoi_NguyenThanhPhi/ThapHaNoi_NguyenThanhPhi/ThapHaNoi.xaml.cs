@@ -28,9 +28,11 @@ namespace ThapHaNoi_NguyenThanhPhi
     public partial class ThapHaNoi : PhoneApplicationPage
     {
         TimeSpan time;
+
+        Image[] disks;
+        Stack<Image> rodA, rodB, rodC;
         Sounds sounds = new Sounds();
-        Picture[] pics;
-        Picture pic1;
+
 
 
         Stack<Picture> stack_pic = new Stack<Picture>();
@@ -46,8 +48,7 @@ namespace ThapHaNoi_NguyenThanhPhi
 
             time = time.Add(new TimeSpan(0, 0, 1));
             txtThoigian.Text = string.Format("{0:00}:{1:00}:{2:00}", time.Hours, time.Minutes, time.Seconds);
-            Disk1.Opacity = 0;
-            Disk2.Opacity = 0;
+            disks = new Image[] { disk1, disk2, disk3, disk4, disk5, disk6, disk7, disk8, disk9, disk10 };
 
             //Khoi tao bo dem thoi gian DispatcherTimer
             _timer = new DispatcherTimer();
@@ -103,8 +104,7 @@ namespace ThapHaNoi_NguyenThanhPhi
 
         private void ShowDisk(int numDisk)
         {
-            Disk1.Opacity = 100;
-            Disk2.Opacity = 100;
+
 
             switch (numDisk)
             {
@@ -124,8 +124,7 @@ namespace ThapHaNoi_NguyenThanhPhi
 
         private void HideDisk(int numDisk)
         {
-            Disk1.Opacity = 0;
-            Disk2.Opacity = 0;
+
 
             switch (numDisk)
             {
