@@ -70,3 +70,4 @@ E:\ViCopper\NĂM 2014-2015\HKII\Luan Van TN\source\ThapHaNoi_NguyenThanhPhi\Thap
 E:\ViCopper\NĂM 2014-2015\HKII\Luan Van TN\source\ThapHaNoi_NguyenThanhPhi\ThapHaNoi_NguyenThanhPhi\Bin\Debug\sv-SE\Microsoft.Advertising.Mobile.resources.dll
 E:\ViCopper\NĂM 2014-2015\HKII\Luan Van TN\source\ThapHaNoi_NguyenThanhPhi\ThapHaNoi_NguyenThanhPhi\Bin\Debug\zh-CN\Microsoft.Advertising.Mobile.resources.dll
 E:\ViCopper\NĂM 2014-2015\HKII\Luan Van TN\source\ThapHaNoi_NguyenThanhPhi\ThapHaNoi_NguyenThanhPhi\Bin\Debug\zh-TW\Microsoft.Advertising.Mobile.resources.dll
+E:\ViCopper\NĂM 2014-2015\HKII\Luan Van TN\source\ThapHaNoi_NguyenThanhPhi\ThapHaNoi_NguyenThanhPhi\obj\Debug\ThapHaNoi_NguyenThanhPhi.csprojResolveAssemblyReference.cache
