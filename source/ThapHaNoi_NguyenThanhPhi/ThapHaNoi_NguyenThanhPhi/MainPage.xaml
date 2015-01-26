@@ -13,7 +13,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Landscape" Orientation="Landscape"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False">
     
     <phone:PhoneApplicationPage.Background>
         <ImageBrush Stretch="Fill"/>
@@ -31,7 +31,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <Border BorderBrush="Black" HorizontalAlignment="Left" Height="480" VerticalAlignment="Top" Width="746" Grid.RowSpan="2">
+        <Border BorderBrush="Black" HorizontalAlignment="Left" Height="480" VerticalAlignment="Top" Width="808" Grid.RowSpan="2" Margin="12,0,-2,0">
             <Border.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Assets/Background/towerofhanoi.jpg"/>
             </Border.Background>
@@ -45,7 +45,7 @@
 
         <Button x:Name="btn_Start" Content="Start" HorizontalAlignment="Left" Margin="262,335,0,0" VerticalAlignment="Center" Tap="btn_Start_Tap" Width="208" RenderTransformOrigin="0.456,0.125" Background="#FF9C1010" Height="96" BorderBrush="#FF9C0000" FontFamily="Bodoni MT Black" FontSize="24"/>
 
-        <Border x:Name="brdSound" BorderThickness="0,1,0,0" HorizontalAlignment="Left" Height="56" Margin="675,10,0,0" VerticalAlignment="Top" Width="61" Tap="btnSound_Tap">
+        <Border x:Name="brdSound" BorderThickness="0,1,0,0" HorizontalAlignment="Left" Height="56" Margin="739,18,0,0" VerticalAlignment="Top" Width="61" Tap="btnSound_Tap">
             <Border.Background>
                 <ImageBrush Stretch="None" ImageSource="Assets/Icon/Volume-Up.png"/>
             </Border.Background>
