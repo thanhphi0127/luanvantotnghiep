@@ -93,7 +93,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Disk.cs" />
+    <Compile Include="Contants.cs" />
+    <Compile Include="DiskControl.xaml.cs">
+      <DependentUpon>DiskControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Function.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -109,6 +113,24 @@
     </Compile>
     <Compile Include="Role.cs" />
     <Compile Include="Sounds.cs" />
+    <Compile Include="Source\Choidon\Thanhtichcanhan.xaml.cs">
+      <DependentUpon>Thanhtichcanhan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Huongdan.xaml.cs">
+      <DependentUpon>Huongdan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Thachdau\Dangki.xaml.cs">
+      <DependentUpon>Dangki.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Thachdau\DangNhap.xaml.cs">
+      <DependentUpon>DangNhap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Thachdau\Danhsachphongchoi.xaml.cs">
+      <DependentUpon>Danhsachphongchoi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Thachdau\Taophong.xaml.cs">
+      <DependentUpon>Taophong.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ThapHaNoi.xaml.cs">
       <DependentUpon>ThapHaNoi.xaml</DependentUpon>
     </Compile>
@@ -118,11 +140,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="DiskControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Moregame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Choidon\Thanhtichcanhan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Huongdan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Thachdau\Dangki.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Thachdau\DangNhap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Thachdau\Danhsachphongchoi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Thachdau\Taophong.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,6 +196,7 @@
     </Content>
     <Content Include="Assets\Audio\click.wav" />
     <Content Include="Assets\Audio\main.wav" />
+    <Content Include="Assets\Background\Dangnhap.png" />
     <Content Include="Assets\Background\beach.jpg" />
     <Content Include="Assets\Background\coc b.png" />
     <Content Include="Assets\Background\Coc_a.png" />
@@ -154,10 +205,35 @@
     <Content Include="Assets\Background\Coc_c1.png" />
     <Content Include="Assets\Background\desert.png" />
     <Content Include="Assets\Background\2.jpg" />
+    <Content Include="Assets\Background\start-choidon.png" />
+    <Content Include="Assets\Background\start.png" />
+    <Content Include="Assets\Background\mattroi.png" />
+    <Content Include="Assets\Background\Hinhnen.jpg" />
+    <Content Include="Assets\Background\black.jpg" />
     <Content Include="Assets\Background\towerofhanoi.jpg" />
+    <Content Include="Assets\Background\listphongchoi.jpg" />
+    <Content Include="Assets\Background\list2.jpg" />
+    <Content Include="Assets\Background\Xephangcanhan.jpg" />
     <Content Include="Assets\Disk\disk1.png" />
     <Content Include="Assets\Disk\disk2.png" />
-    <Content Include="Assets\Icon\Volume-Up.png" />
+    <Content Include="Assets\Icon\1.png" />
+    <Content Include="Assets\Icon\back.png" />
+    <Content Include="Assets\Icon\delete.png" />
+    <Content Include="Assets\Icon\choidon.ico" />
+    <Content Include="Assets\Icon\left-arrow-icon.png" />
+    <Content Include="Assets\Icon\thachdau.png" />
+    <Content Include="Assets\Icon\icon-list.png" />
+    <Content Include="Assets\Icon\add.png" />
+    <Content Include="Assets\Icon\back-icon.png" />
+    <Content Include="Assets\Icon\Help.png" />
+    <Resource Include="Assets\Icon\icon_dangky.gif" />
+    <Content Include="Assets\Icon\icon_huongdan.png" />
+    <Content Include="Assets\Icon\lock icon.png" />
+    <Content Include="Assets\Icon\login.png" />
+    <Content Include="Assets\Icon\register.png" />
+    <Content Include="Assets\Icon\Thongtin.png" />
+    <Content Include="Assets\Icon\top.png" />
+    <Content Include="Assets\Icon\Volume-Normal.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -210,6 +286,9 @@
     <SDKReference Include="SQLite.WP80, Version=3.8.7.4">
       <Name>SQLite for Windows Phone</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

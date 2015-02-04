@@ -16,6 +16,7 @@ namespace ThapHaNoi_NguyenThanhPhi
     {
         // Constructor
         Sounds sounds = new Sounds();
+        bool stateSound = false;
         public MainPage()
         {
             InitializeComponent();
@@ -32,9 +33,13 @@ namespace ThapHaNoi_NguyenThanhPhi
         private void btn_Start_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
-            btn_Start.Background = new SolidColorBrush(Colors.White);
-            btn_Start.Background.Opacity = 0.5;
             NavigationService.Navigate(new Uri("/ThapHaNoi.xaml", UriKind.Relative));
+        }
+
+        private void Tap_Online(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            sounds.Play("click");
+            NavigationService.Navigate(new Uri("/Source/Thachdau/DangNhap.xaml", UriKind.Relative));
         }
 
         /*********************************************************************************
@@ -47,8 +52,6 @@ namespace ThapHaNoi_NguyenThanhPhi
         private void btn_MoreGame_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
-            btn_MoreGame.Background = new SolidColorBrush(Colors.White);
-            btn_MoreGame.Background.Opacity = 0.5;
             NavigationService.Navigate(new Uri("/MoreGame.xaml", UriKind.Relative));
         }
 
@@ -62,7 +65,28 @@ namespace ThapHaNoi_NguyenThanhPhi
         private void btnSound_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
-            sounds.Stop("main");
+            if (stateSound)
+            {
+                sounds.Play("main");
+                stateSound = false;
+            }
+            else
+            {
+                sounds.Stop("main");
+                stateSound = true;
+            }
+        }
+
+        private void imgGioithieu(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            sounds.Play("click");
+            NavigationService.Navigate(new Uri("/Source/Huongdan.xaml", UriKind.Relative));
+        }
+
+        private void btnThanhtich(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            sounds.Play("click");
+            NavigationService.Navigate(new Uri("/Source/Choidon/Thanhtichcanhan.xaml", UriKind.Relative));
         }
 
 

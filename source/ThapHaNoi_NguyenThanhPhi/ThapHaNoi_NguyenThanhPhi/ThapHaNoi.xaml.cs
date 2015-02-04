@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Windows.Media;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 using ThapHaNoi_NguyenThanhPhi.Resources;
 
@@ -31,59 +32,282 @@ namespace ThapHaNoi_NguyenThanhPhi
     {
         TimeSpan time;
 
-        Image[] disks;
-        Stack<Image> rodA, rodB, rodC;
         Sounds sounds = new Sounds();
-        Stack<Picture> stack_pic = new Stack<Picture>();
+        Function func = new Function();
 
         private DispatcherTimer _timer;
-        private DateTime _startTime;
 
-        List<Disk> liskDisk = new List<Disk>();
-
-        Disk disk = new Disk();
 
         private TranslateTransform move = new TranslateTransform();
         private TransformGroup rectangleTransforms = new TransformGroup();
 
 
+        Stack<DiskControl> stackA;
+        Stack<DiskControl> stackB;
+        Stack<DiskControl> stackC;
+
+        Stack<DiskControl> firstClickedDisks, secondClickedDisks;
+
+        Canvas from, to;
+
+        DiskControl diskTab, temp, getTop;
+
+        int moveCount = 0;
+        int numDisk = 5;
 
         public ThapHaNoi()
         {
             InitializeComponent();
-
             sounds.Stop("main");
-            
-            time = time.Add(new TimeSpan(0, 0, 1));
-            txtThoigian.Text = string.Format("{0:00}:{1:00}:{2:00}", time.Hours, time.Minutes, time.Seconds);
 
-            //disk3, disk4, disk5, disk6, disk7, disk8, disk9, disk10 
+            CavasRodA.Tag = stackA = new Stack<DiskControl>();
+            CavasRodB.Tag = stackB = new Stack<DiskControl>();
+            CavasRodC.Tag = stackC = new Stack<DiskControl>();
+            from = new Canvas();
+            to = new Canvas();
+            from.Name = to.Name = null;
+
+            Init();
 
             //Khoi tao bo dem thoi gian DispatcherTimer
             _timer = new DispatcherTimer();
             _timer.Tick += new EventHandler(TimerTick);
+            _timer.Interval = new TimeSpan(0, 0, 0, 1);
 
-
-
-
-            /////
-            Image img = disk.CreateDisk(1);
-            Image img2 = disk.CreateDisk(2);
-
-            StackRodA.Children.Add(img);
-            StackRodB.Children.Add(img2);
-
-            rectangleTransforms.Children.Add(move);
-
-            img.RenderTransform = rectangleTransforms;
-
-            img.ManipulationStarted +=
-                new EventHandler<ManipulationStartedEventArgs>(Rectangle_ManipulationStarted);
-            img.ManipulationDelta +=
-                new EventHandler<ManipulationDeltaEventArgs>(Rectangle_ManipulationDelta);
-            img.ManipulationCompleted +=
-                new EventHandler<ManipulationCompletedEventArgs>(Rectangle_ManipulationCompleted);
         }
+
+        void Init()
+        {
+            numDisk = 5;
+            int topDisk = Contants.TopDisk;
+
+
+            for (int i = 1; i <= numDisk; i++)
+            {
+                var disc = new DiskControl
+                {
+                    FontSize = 30,
+                    Width = 140 - 10 * i,
+                    Height = 30
+                };
+                CavasRodA.Children.Add(disc);
+                disc.Tag = i.ToString();
+                Canvas.SetTop(disc, topDisk);
+                Canvas.SetLeft(disc, Contants.LeftCanvas + 5 * i);
+                topDisk -= Contants.SpaceDisk;
+
+                stackA.Push(disc);
+            }
+
+
+        }
+
+
+        private void MoveTopDisk(DiskControl diskTab, Stack<DiskControl> stack)
+        {
+            if (stack.Count == 0) return;
+            diskTab = stack.Peek();
+            txtThoigian.Text = diskTab.Tag.ToString();
+            Canvas.SetTop(diskTab, 0);
+        }
+
+
+        private void Tap_Canvas(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Canvas diskRod = (Canvas)sender;
+            Stack<DiskControl> diskOfClickedRod = (Stack<DiskControl>)diskRod.Tag;
+            if (firstClickedDisks == null)
+            {
+                sounds.Play("click");
+                if (diskOfClickedRod.Count == 0) return;
+                //firstClickedDisks = diskOfClickedRod;
+                from.Name = diskRod.Name;
+
+                switch (diskRod.Name)
+                {
+                    case "CavasRodA":
+                        if (stackA.Count == 0) break;
+                        diskTab = stackA.Peek();
+                        Canvas.SetTop(diskTab, 0);
+
+                        firstClickedDisks = stackA;
+                        break;
+                    case "CavasRodB":
+                        if (stackB.Count == 0) break;
+                        diskTab = stackB.Peek();
+                        Canvas.SetTop(diskTab, 0);
+
+                        firstClickedDisks = stackB;
+                        break;
+                    case "CavasRodC":
+                        if (stackC.Count == 0) break;
+                        diskTab = stackC.Peek();
+                        Canvas.SetTop(diskTab, 0);
+
+                        firstClickedDisks = stackC;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            else if (secondClickedDisks == null)
+            {
+
+                if (diskOfClickedRod == firstClickedDisks)
+                {
+                    //Bo chon disk
+                    switch (diskRod.Name)
+                    {
+                        case "CavasRodA":
+                            Canvas.SetTop(diskTab, (Contants.TopDisk - (stackA.Count - 1) * Contants.SpaceDisk));
+                            break;
+                        case "CavasRodB":
+                            Canvas.SetTop(diskTab, (Contants.TopDisk - (stackB.Count - 1) * Contants.SpaceDisk));
+                            break;
+
+                        case "CavasRodC":
+                            Canvas.SetTop(diskTab, (Contants.TopDisk - (stackC.Count - 1) * Contants.SpaceDisk));
+                            break;
+
+                        default:
+                            break;
+                    }
+                    firstClickedDisks = null;
+                    return;
+                }
+
+                to.Name = diskRod.Name;
+                secondClickedDisks = diskOfClickedRod;
+                ProcessMovingDisk(diskRod);
+            }
+        }
+
+
+        private void ProcessMovingDisk(Canvas diskRod)
+        {
+            if (secondClickedDisks.Count == 0)
+            {
+                sounds.Play("click");
+                MoveDisk(from, to);
+                moveCount++;
+                txtSolan.Text = "Số lần chuyển: " + moveCount;
+            }
+            else
+            {
+                DiskControl firstTopDisk = firstClickedDisks.Peek();
+                DiskControl secondTopDisk = secondClickedDisks.Peek();
+                if (int.Parse(firstTopDisk.Tag.ToString()) > int.Parse(secondTopDisk.Tag.ToString()))
+                {
+                    sounds.Play("click");
+                    MoveDisk(from, to);
+                    moveCount++;
+                    txtSolan.Text = "Số lần chuyển: " + moveCount;
+                }
+                else
+                {
+                    
+                    secondClickedDisks = null;
+                }
+            }
+        }
+
+        private void MoveDisk(Canvas from, Canvas to)
+        {
+            switch (from.Name)
+            {
+                case "CavasRodA":
+                    temp = stackA.Pop();
+                    func.Remove(CavasRodA, temp.Tag.ToString());
+
+                    break;
+                case "CavasRodB":
+                    temp = stackB.Pop();
+                    func.Remove(CavasRodB, temp.Tag.ToString());
+                    break;
+
+                case "CavasRodC":
+                    temp = stackC.Pop();
+                    func.Remove(CavasRodC, temp.Tag.ToString());
+                    break;
+
+                default:
+                    break;
+            }
+
+            switch (to.Name)
+            {
+                case "CavasRodA":
+                    /*
+                     * Get top disk first
+                     * Set top disk push = first - 31
+                     * */
+                    if (stackA.Count == 0)
+                    {
+                        stackA.Push(temp);
+                        CavasRodA.Children.Add(temp);
+                        Canvas.SetLeft(temp, Canvas.GetLeft(temp));
+                        Canvas.SetTop(temp, Contants.TopDisk);
+                        break;
+                    }
+
+                    getTop = stackA.Peek();
+
+                    stackA.Push(temp);
+                    CavasRodA.Children.Add(temp);
+                    Canvas.SetLeft(temp, Canvas.GetLeft(temp));
+                    Canvas.SetTop(temp, Canvas.GetTop(getTop) - Contants.SpaceDisk);
+
+                    break;
+                case "CavasRodB":
+                    if (stackB.Count == 0)
+                    {
+                        stackB.Push(temp);
+                        CavasRodB.Children.Add(temp);
+                        Canvas.SetLeft(temp, Canvas.GetLeft(temp));
+                        Canvas.SetTop(temp, Contants.TopDisk);
+                        break;
+                    }
+
+                    getTop = stackB.Peek();
+                    stackB.Push(temp);
+                    CavasRodB.Children.Add(temp);
+                    Canvas.SetLeft(temp, Canvas.GetLeft(temp));
+                    Canvas.SetTop(temp, Canvas.GetTop(getTop) - Contants.SpaceDisk);
+                    break;
+
+                case "CavasRodC":
+                    if (stackC.Count == 0)
+                    {
+                        stackC.Push(temp);
+                        CavasRodC.Children.Add(temp);
+                        Canvas.SetLeft(temp, Canvas.GetLeft(temp));
+                        Canvas.SetTop(temp, Contants.TopDisk);
+                        break;
+                    }
+
+                    getTop = stackC.Peek();
+                    stackC.Push(temp);
+                    CavasRodC.Children.Add(temp);
+                    Canvas.SetLeft(temp, Canvas.GetLeft(temp));
+                    Canvas.SetTop(temp, Canvas.GetTop(getTop) - Contants.SpaceDisk);
+                    break;
+
+                default:
+                    break;
+            }
+
+
+            if (stackC.Count == numDisk)
+            {
+                MessageBox.Show("Chuc mung! Ban da chien thang", "Chuc mung", MessageBoxButton.OK);
+            }
+
+            //Xoa du lieu di chuyen va du lieu canvas
+            from.Name = to.Name = null;
+            firstClickedDisks = secondClickedDisks = null;
+        }
+
 
 
         void Rectangle_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
@@ -111,7 +335,7 @@ namespace ThapHaNoi_NguyenThanhPhi
          *********************************************************************************/
         void TimerTick(object sender, EventArgs e)
         {
-            var time = DateTime.Now - _startTime;
+            time = time.Add(new TimeSpan(0, 0, 1));
             txtThoigian.Text = string.Format("{0:00}:{1:00}:{2:00}", time.Hours, time.Minutes, time.Seconds);
         }
 
@@ -123,10 +347,7 @@ namespace ThapHaNoi_NguyenThanhPhi
         private void btnPlay_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
-            //int numDisk = Convert.ToInt32(txtSodia.Text);
-
-            //ShowDisk(numDisk);
-
+            _timer.Start();
         }
 
         /*********************************************************************************
@@ -137,6 +358,7 @@ namespace ThapHaNoi_NguyenThanhPhi
         private void btnHelp_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
+            _timer.Stop();
         }
 
         /*********************************************************************************
@@ -149,44 +371,24 @@ namespace ThapHaNoi_NguyenThanhPhi
             sounds.Play("click");
         }
 
-        private void ShowDisk(int numDisk)
+
+        private void CavasRodA_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
-
-
-            switch (numDisk)
-            {
-                case 3:
-                    //Disk3.Opacity = 100;
-                    break;
-
-                case 4:
-                   // Disk3.Opacity = 100;
-                    //Disk4.Opacity = 100;
-                    break;
-
-                default:
-                    break;
-            }
+            // Move the 
+            move.X += e.DeltaManipulation.Translation.X;
+            move.Y += e.DeltaManipulation.Translation.Y;
         }
 
-        private void HideDisk(int numDisk)
+        private void imgBack(object sender, System.Windows.Input.GestureEventArgs e)
         {
-
-
-            switch (numDisk)
-            {
-                case 3:
-                    //Disk3.Opacity = 0;
-                    break;
-
-                case 4:
-
-                    break;
-
-                default:
-                    break;
-            }
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
+
+
+
+
+
+
 
     }
 }
