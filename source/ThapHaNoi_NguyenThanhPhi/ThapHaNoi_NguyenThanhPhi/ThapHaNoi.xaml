@@ -14,6 +14,38 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="False" SupportedOrientations="Landscape">
 
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+    
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Name="lpkItemTemplate">
+            <TextBlock Text="{Binding Country}" />
+        </DataTemplate>
+        <DataTemplate x:Name="lpkFullItemTemplate">
+            <TextBlock Text="{Binding Country}" Style="{StaticResource PhoneTextTitle2Style}"/>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
@@ -46,20 +78,33 @@
             <Image Source="/Assets/Icon/left-arrow-icon.png" Tap="imgBack" HorizontalAlignment="Left" Height="58" Margin="10,421,0,0" VerticalAlignment="Top" Width="64"/>
         </Grid>
 
-        <Button x:Name="btnPlay" Content="Bắt đầu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Background="#FF09950F" Tap="btnPlay_Tap" FontSize="14" Margin="3,28,0,0" Height="60"/>
-        <Button Content="Trợ giúp" HorizontalAlignment="Left" Margin="1,198,0,0" VerticalAlignment="Top" Background="#FFF0004C" FontSize="14" Tap="btnHelp_Tap" Height="60" Width="114"/>
+        
+        <Button Content="Trợ giúp" HorizontalAlignment="Left" Margin="99,3,0,0" VerticalAlignment="Top" Background="#FFF0004C" FontSize="14" Tap="btnHelp_Tap" Height="60" Width="114"/>
 
-        <Button Content="Luật chơi" HorizontalAlignment="Left" Margin="0,114,0,0" VerticalAlignment="Top" Background="#FF0913D8" FontSize="16" Tap="btnRule_Tap" Height="63" Width="117"/>
+        <Button Content="Luật chơi" HorizontalAlignment="Left" Margin="-2,2,0,0" VerticalAlignment="Top" Background="#FF0913D8" FontSize="16" Tap="btnRule_Tap" Height="63" Width="117"/>
 
         <TextBlock FontSize="24" TextWrapping="Wrap" Text="Thời gian:" Margin="561,12,120,547"/>
         <TextBlock x:Name="txtThoigian" FontSize="24" TextWrapping="Wrap" Text="00:00:00" Margin="680,12,31,547"/>
 
         <TextBlock x:Name="txtSolan" FontSize="24" TextWrapping="Wrap" Text="Số lần chuyển:" Margin="341,10,254,530"/>
 
-        <Canvas x:Name="canvasStart">
-            <Image Source="/Assets/Background/start-choidon.png" Width="564" Height="413" Canvas.Left="162" Canvas.Top="60"></Image>
-            <TextBlock Canvas.Left="267" TextWrapping="Wrap" Text="Số dĩa" Canvas.Top="248" Width="92"/>
+        <Canvas x:Name="canvasStart" Visibility="Visible">
+            <Image Source="/Assets/Background/start-choidon.png" Width="348" Height="208" Canvas.Left="250" Canvas.Top="180"></Image>
+            <TextBlock Canvas.Left="320" TextWrapping="Wrap" Text="Số dĩa" Canvas.Top="210" Width="68"/>
 
+            <Grid x:Name="ContentPanel1" Margin="154,457,10,256" RenderTransformOrigin="0.5,0.5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <toolkit:ListPicker FullModeItemTemplate="{Binding lpkFullItemTemplate}" Grid.Row="5" ItemTemplate="{Binding lpkItemTemplate}" x:Name="listNumDisk" Margin="251,-265,-373,205"/>
+            </Grid>
+            <Button x:Name="btnPlay" Content="Bắt đầu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Background="#FF09950F" Tap="btnPlay_Tap" FontSize="14" Height="60" Canvas.Left="377" Canvas.Top="279"/>
         </Canvas>
 
     </Grid>
