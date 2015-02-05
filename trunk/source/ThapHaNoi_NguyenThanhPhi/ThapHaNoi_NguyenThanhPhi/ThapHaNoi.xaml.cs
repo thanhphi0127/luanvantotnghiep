@@ -30,6 +30,7 @@ namespace ThapHaNoi_NguyenThanhPhi
 {
     public partial class ThapHaNoi : PhoneApplicationPage
     {
+
         TimeSpan time;
 
         Sounds sounds = new Sounds();
@@ -53,11 +54,18 @@ namespace ThapHaNoi_NguyenThanhPhi
         DiskControl diskTab, temp, getTop;
 
         int moveCount = 0;
-        int numDisk = 5;
+        int numDisk = 3;
 
+        int[] comboNumDisk = { 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            
         public ThapHaNoi()
         {
             InitializeComponent();
+
+            this.listNumDisk.ItemsSource = comboNumDisk;
+            numDisk = int.Parse(listNumDisk.SelectedItem.ToString());
+
+
             sounds.Stop("main");
 
             CavasRodA.Tag = stackA = new Stack<DiskControl>();
@@ -78,7 +86,6 @@ namespace ThapHaNoi_NguyenThanhPhi
 
         void Init()
         {
-            numDisk = 5;
             int topDisk = Contants.TopDisk;
 
 
@@ -300,7 +307,9 @@ namespace ThapHaNoi_NguyenThanhPhi
 
             if (stackC.Count == numDisk)
             {
-                MessageBox.Show("Chuc mung! Ban da chien thang", "Chuc mung", MessageBoxButton.OK);
+                //MessageBox.Show("Chuc mung! Ban da chien thang", "Chuc mung", MessageBoxButton.OK);
+                _timer.Stop();
+                //Luu lai bang xep hang
             }
 
             //Xoa du lieu di chuyen va du lieu canvas
@@ -348,6 +357,7 @@ namespace ThapHaNoi_NguyenThanhPhi
         {
             sounds.Play("click");
             _timer.Start();
+            canvasStart.Visibility = Visibility.Collapsed;
         }
 
         /*********************************************************************************

@@ -34,36 +34,31 @@
         <!--TitlePanel contains the name of the application and page title-->
         <!--ContentPanel - place additional content here-->
 
-        <Button x:Name="btn_Start" Content="Chơi đơn" HorizontalAlignment="Left" Tap="btn_Start_Tap"  Margin="212,202,0,428" VerticalAlignment="Center" Width="276" RenderTransformOrigin="0.456,0.125" Background="#FF2C008B" Height="96" BorderBrush="#FF00719C" FontFamily="Arial" FontSize="24" Grid.Row="1"/>
-        <Button x:Name="btn_Online" Content="Thách đấu trực tuyến" HorizontalAlignment="Left" Tap="Tap_Online" Margin="151,54,0,566" VerticalAlignment="Center"  Width="337" RenderTransformOrigin="0.456,0.125" Background="#FF953939" Height="106" BorderBrush="#FF9C0000" FontFamily="Arial" FontSize="24" Grid.Row="1">
-        </Button>
-        <Button x:Name="btn_Thanhtich" Tap="btnThanhtich" Content="Thành tích" HorizontalAlignment="Left" Margin="243,348,0,282" VerticalAlignment="Center" Width="245" RenderTransformOrigin="0.456,0.125" Background="#FF10169C" Height="96" BorderBrush="#FF8D67F1" FontFamily="Arial" FontSize="24" Grid.Row="1">
-        </Button>
-
-        <Border x:Name="brdSound" BorderThickness="0,1,0,0" HorizontalAlignment="Left" Height="64" Margin="423,11,0,0" VerticalAlignment="Top" Width="64" Tap="btnSound_Tap" Grid.RowSpan="2">
+        <Border x:Name="brdSound" BorderThickness="0,1,0,0" HorizontalAlignment="Left" Height="64" Margin="430,6,0,0" VerticalAlignment="Top" Width="64" Tap="btnSound_Tap">
             <Border.Background>
                 <ImageBrush Stretch="None" ImageSource="Assets/Icon/Volume-Normal.png"/>
             </Border.Background>
         </Border>
-        <TextBlock HorizontalAlignment="Left" Margin="40,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Thách đấu trực tuyến" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="334,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Chơi đơn" VerticalAlignment="Top"/>
-        <TextBlock FontSize="30" HorizontalAlignment="Left" Margin="151,530,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Giới thiệu" VerticalAlignment="Top" Width="151" FontWeight="Bold" FontFamily="Times New Roman" RenderTransformOrigin="0.5,0.5" Cursor="None">
-        	<TextBlock.Foreground>
-        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="Black" Offset="0.108"/>
-        			<GradientStop Color="#FFA82D2D" Offset="0.845"/>
-        		</LinearGradientBrush>
-        	</TextBlock.Foreground>
-        	<i:Interaction.Triggers>
-        		<i:EventTrigger EventName="MouseLeftButtonDown">
-        			<ec:NavigateToPageAction TargetPage="/Source/Huongdan.xaml"/>
-        		</i:EventTrigger>
-        	</i:Interaction.Triggers>
-        </TextBlock>
-        <Image Source="/Assets/Icon/Thongtin.png" HorizontalAlignment="Left" Height="100" Margin="46,499,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Tap="imgGioithieu"/>
-        <Image Source="/Assets/Icon/thachdau.png" HorizontalAlignment="Left" Height="100" Margin="46,54,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
-        <Image Source="/Assets/Icon/choidon.ico" HorizontalAlignment="Left" Height="100" Margin="111,202,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
-        <Image Source="/Assets/Icon/top.png"  HorizontalAlignment="Left" Height="100" Margin="127,348,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
+        
+        
+        
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="82" Margin="88,190,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="400"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="82" Margin="122,322,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="366"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="82" Margin="88,566,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="400"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="82" Margin="112,457,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="376"/>
+
+        
+        <Image Source="/Assets/Icon/Thongtin.png" HorizontalAlignment="Left" Height="82" Margin="34,566,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95" Tap="imgGioithieu"/>
+        <Image Source="/Assets/Icon/thachdau.png" HorizontalAlignment="Left" Height="82" Margin="28,190,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95"/>
+        <Image Source="/Assets/Icon/choidon.ico" HorizontalAlignment="Left" Height="83" Margin="74,321,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95"/>
+        <Image Source="/Assets/Icon/top.png"  HorizontalAlignment="Left" Height="96" Margin="88,443,0,0" Grid.Row="1" VerticalAlignment="Top" Width="81"/>
+        <Image Source="/Assets/Logo/main.png" HorizontalAlignment="Left" Height="174" Margin="45,0,0,0" VerticalAlignment="Top" Width="413" Grid.Row="1"/>
+        <Image Source="/Assets/Logo/thachdautructuyen.png" HorizontalAlignment="Left" Tap="Tap_Online" Height="51" Margin="112,211,0,0" Grid.Row="1" VerticalAlignment="Top" Width="376"/>
+        <Image Source="/Assets/Logo/choidon.png" Tap="btn_Start_Tap"  HorizontalAlignment="Left" Height="54" Margin="169,329,0,0" Grid.Row="1" VerticalAlignment="Top" Width="250"/>
+        <Image Source="/Assets/Logo/thanhtich.png" Tap="btnThanhtich" HorizontalAlignment="Left" Height="76" Margin="174,463,0,0" Grid.Row="1" VerticalAlignment="Top" Width="245"/>
+        <Image Source="/Assets/Logo/huongdan.png" Tap="imgGioithieu" HorizontalAlignment="Left" Height="64" Margin="128,576,0,0" Grid.Row="1" VerticalAlignment="Top" Width="231"/>
+        
+
 
 
     </Grid>

@@ -214,8 +214,6 @@
     <Content Include="Assets\Background\listphongchoi.jpg" />
     <Content Include="Assets\Background\list2.jpg" />
     <Content Include="Assets\Background\Xephangcanhan.jpg" />
-    <Content Include="Assets\Disk\disk1.png" />
-    <Content Include="Assets\Disk\disk2.png" />
     <Content Include="Assets\Icon\1.png" />
     <Content Include="Assets\Icon\back.png" />
     <Content Include="Assets\Icon\delete.png" />
@@ -234,6 +232,13 @@
     <Content Include="Assets\Icon\Thongtin.png" />
     <Content Include="Assets\Icon\top.png" />
     <Content Include="Assets\Icon\Volume-Normal.png" />
+    <Content Include="Assets\Logo\main.png" />
+    <Content Include="Assets\Logo\choidon.png" />
+    <Content Include="Assets\Logo\huongdan.png" />
+    <Content Include="Assets\Logo\thanhtich.png" />
+    <Content Include="Assets\Logo\thachdautructuyen.png" />
+    <Content Include="Assets\Logo\towerofhanoi_xanh.png" />
+    <Content Include="Assets\Logo\towerofhanoi.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -243,12 +248,14 @@
     <Content Include="Assets\Tiles\FlipCycleTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\icon title.png" />
     <Content Include="Assets\Tiles\IconicTileMediumLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icon title.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
@@ -287,9 +294,7 @@
       <Name>SQLite for Windows Phone</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
