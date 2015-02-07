@@ -38,10 +38,10 @@
     
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Name="lpkItemTemplate">
-            <TextBlock Text="{Binding Country}" />
+            <TextBlock Text="{Binding comboNumDisk}" />
         </DataTemplate>
         <DataTemplate x:Name="lpkFullItemTemplate">
-            <TextBlock Text="{Binding Country}" Style="{StaticResource PhoneTextTitle2Style}"/>
+            <TextBlock Text="{Binding comboNumDisk}" Style="{StaticResource PhoneTextTitle2Style}"/>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
 
@@ -49,14 +49,14 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MinHeight="586"/>
-            <RowDefinition Height="0*"/>
+            <RowDefinition Height="Auto" MinHeight="591"/>
+
         </Grid.RowDefinitions>
  
         
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Background="Transparent" Margin="0,0,0,53">
-            <Image Source="Assets/Background/desert.png"></Image>
+            <Image Source="Assets/Background/desert.png" Margin="0,-2,0,2"></Image>
             
             <Canvas x:Name="CavasRodA" Margin="98,45,482,54" Tap="Tap_Canvas" ManipulationDelta="CavasRodA_ManipulationDelta">
                 <Canvas.Background>
@@ -79,32 +79,36 @@
         </Grid>
 
         
-        <Button Content="Trợ giúp" HorizontalAlignment="Left" Margin="99,3,0,0" VerticalAlignment="Top" Background="#FFF0004C" FontSize="14" Tap="btnHelp_Tap" Height="60" Width="114"/>
+        <Button Content="Trợ giúp" HorizontalAlignment="Left" Margin="99,3,0,0" VerticalAlignment="Top" Background="#FFF0004C" FontSize="14" Tap="Tap_Trogiup" Height="60" Width="114"/>
 
-        <Button Content="Luật chơi" HorizontalAlignment="Left" Margin="-2,2,0,0" VerticalAlignment="Top" Background="#FF0913D8" FontSize="16" Tap="btnRule_Tap" Height="63" Width="117"/>
+        <Button Content="Luật chơi" Tap="Tap_LuatChoi" HorizontalAlignment="Left" Margin="-2,2,0,0" VerticalAlignment="Top" Background="#FF0913D8" FontSize="16" Height="63" Width="117"/>
 
         <TextBlock FontSize="24" TextWrapping="Wrap" Text="Thời gian:" Margin="561,12,120,547"/>
         <TextBlock x:Name="txtThoigian" FontSize="24" TextWrapping="Wrap" Text="00:00:00" Margin="680,12,31,547"/>
 
-        <TextBlock x:Name="txtSolan" FontSize="24" TextWrapping="Wrap" Text="Số lần chuyển:" Margin="341,10,254,530"/>
+        <TextBlock x:Name="txtSolan" FontSize="24" TextWrapping="Wrap" Text="Số lần chuyển: 0" Margin="341,10,254,530"/>
 
-        <Canvas x:Name="canvasStart" Visibility="Visible">
-            <Image Source="/Assets/Background/start-choidon.png" Width="348" Height="208" Canvas.Left="250" Canvas.Top="180"></Image>
-            <TextBlock Canvas.Left="320" TextWrapping="Wrap" Text="Số dĩa" Canvas.Top="210" Width="68"/>
+        <Canvas x:Name="canvasStart" Visibility="Visible" Margin="0,0,0,111">
+            <Image Source="/Assets/Background/start_choidon.png" Width="647" Height="429" Canvas.Left="99" Canvas.Top="49"></Image>
+            <TextBlock Canvas.Left="244" FontSize="23" Foreground="Red" TextWrapping="Wrap" Text="Số dĩa" Canvas.Top="292" Width="68"/>
 
             <Grid x:Name="ContentPanel1" Margin="154,457,10,256" RenderTransformOrigin="0.5,0.5">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 
-                <toolkit:ListPicker FullModeItemTemplate="{Binding lpkFullItemTemplate}" Grid.Row="5" ItemTemplate="{Binding lpkItemTemplate}" x:Name="listNumDisk" Margin="251,-265,-373,205"/>
+                <toolkit:ListPicker FullModeItemTemplate="{Binding lpkFullItemTemplate}" Grid.Row="8" ItemTemplate="{Binding lpkItemTemplate}" x:Name="listNumDisk" Margin="163,-182,-305,131" RenderTransformOrigin="0.488,0.54"/>
             </Grid>
-            <Button x:Name="btnPlay" Content="Bắt đầu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Background="#FF09950F" Tap="btnPlay_Tap" FontSize="14" Height="60" Canvas.Left="377" Canvas.Top="279"/>
+            <Button x:Name="btnPlay" Content="Bắt đầu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Background="#FF09950F" Tap="btnPlay_Tap" FontSize="14" Height="72" Canvas.Left="532" Canvas.Top="272"/>
+            <Image Source="/Assets/Icon/start-icon.png" Height="59" Canvas.Left="489" Canvas.Top="282" Width="53"/>
+        </Canvas>
+
+        <Canvas x:Name="canvasWin" Visibility="Collapsed"  Margin="99,84,64,170">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/Assets/Background/win.jpg"></ImageBrush>
+            </Canvas.Background>
+            <Image Source="/Assets/Logo/tieptuc.png" Tap="Tap_Tieptuc" Height="82" Canvas.Left="239" Canvas.Top="211" Width="186"/>
+
         </Canvas>
 
     </Grid>

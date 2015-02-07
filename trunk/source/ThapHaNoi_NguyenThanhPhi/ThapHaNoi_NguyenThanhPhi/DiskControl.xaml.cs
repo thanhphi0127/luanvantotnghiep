@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using System.Windows.Input;
 using System.Windows.Media;
 
+
 namespace ThapHaNoi_NguyenThanhPhi
 {
     public partial class DiskControl : UserControl
@@ -31,7 +32,7 @@ namespace ThapHaNoi_NguyenThanhPhi
         }
 
         public static readonly DependencyProperty TextProperty =
-             DependencyProperty.Register("Text", typeof(string), typeof(DiskControl), null);
+             DependencyProperty.Register("Text", typeof(string), typeof(DiskControl), new PropertyMetadata(default(string)));
 
         public delegate void _Tap(DiskControl disk);
         public _Tap OnTap;
@@ -40,6 +41,8 @@ namespace ThapHaNoi_NguyenThanhPhi
         {
 
         }
+
+       
 
     }
 }

@@ -98,6 +98,7 @@
       <DependentUpon>DiskControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Function.cs" />
+    <Compile Include="GameState.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -105,13 +106,14 @@
     <Compile Include="Moregame.xaml.cs">
       <DependentUpon>Moregame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MoveCalculation.cs" />
+    <Compile Include="Pole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Role.cs" />
     <Compile Include="Sounds.cs" />
     <Compile Include="Source\Choidon\Thanhtichcanhan.xaml.cs">
       <DependentUpon>Thanhtichcanhan.xaml</DependentUpon>
@@ -205,12 +207,12 @@
     <Content Include="Assets\Background\Coc_c1.png" />
     <Content Include="Assets\Background\desert.png" />
     <Content Include="Assets\Background\2.jpg" />
-    <Content Include="Assets\Background\start-choidon.png" />
+    <Content Include="Assets\Background\win.jpg" />
     <Content Include="Assets\Background\start.png" />
     <Content Include="Assets\Background\mattroi.png" />
     <Content Include="Assets\Background\Hinhnen.jpg" />
     <Content Include="Assets\Background\black.jpg" />
-    <Content Include="Assets\Background\towerofhanoi.jpg" />
+    <Content Include="Assets\Background\start_choidon.png" />
     <Content Include="Assets\Background\listphongchoi.jpg" />
     <Content Include="Assets\Background\list2.jpg" />
     <Content Include="Assets\Background\Xephangcanhan.jpg" />
@@ -219,6 +221,7 @@
     <Content Include="Assets\Icon\delete.png" />
     <Content Include="Assets\Icon\choidon.ico" />
     <Content Include="Assets\Icon\left-arrow-icon.png" />
+    <Content Include="Assets\Icon\start-icon.png" />
     <Content Include="Assets\Icon\thachdau.png" />
     <Content Include="Assets\Icon\icon-list.png" />
     <Content Include="Assets\Icon\add.png" />
@@ -232,6 +235,7 @@
     <Content Include="Assets\Icon\Thongtin.png" />
     <Content Include="Assets\Icon\top.png" />
     <Content Include="Assets\Icon\Volume-Normal.png" />
+    <Content Include="Assets\Logo\tieptuc.png" />
     <Content Include="Assets\Logo\main.png" />
     <Content Include="Assets\Logo\choidon.png" />
     <Content Include="Assets\Logo\huongdan.png" />

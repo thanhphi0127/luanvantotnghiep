@@ -16,7 +16,7 @@ namespace ThapHaNoi_NguyenThanhPhi
     class Sounds
     {
         SoundEffect soundEffect;
-        SoundEffectInstance main, play, win, lose, click;
+        SoundEffectInstance main, play, win, lose, wrong, click;
         public bool mute;
 
 
@@ -29,7 +29,18 @@ namespace ThapHaNoi_NguyenThanhPhi
 
             soundEffect = SoundEffect.FromStream(TitleContainer.OpenStream("./Assets/Audio/click.wav"));
             click = soundEffect.CreateInstance();
-            click.Volume = (float)0.9;
+            click.Volume = (float)0.6;
+
+            /*
+            soundEffect = SoundEffect.FromStream(TitleContainer.OpenStream("./Assets/Audio/win.wav"));
+            win = soundEffect.CreateInstance();
+            win.Volume = (float)0.9;
+             *
+
+            soundEffect = SoundEffect.FromStream(TitleContainer.OpenStream("./Assets/Audio/wrong.wav"));
+            wrong = soundEffect.CreateInstance();
+            wrong.Volume = (float)0.9;
+             * */
         }
 
         public Sounds(string state)
@@ -48,6 +59,13 @@ namespace ThapHaNoi_NguyenThanhPhi
                 case "playing": play.Play();
                     break;
                 case "click": click.Play();
+                    break;
+                case "wrong": wrong.Play();
+                    break;
+                case "win": win.Play();
+                    break;
+
+                default:
                     break;
             }
         }
