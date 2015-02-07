@@ -1,0 +1,68 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="ThapHaNoi_NguyenThanhPhi.Source.Choidon.Thanhtichcanhan"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="False">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!-- COMPONENT
+        <ImageBrush Stretch="Fill" ImageSource="/ThapHaNoi_NguyenThanhPhi;component/Assets/Background/Dangnhap.png"/>    
+    -->
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="Black" HorizontalAlignment="Left" Height="800" VerticalAlignment="Top" Width="480" Grid.RowSpan="1">
+            <Border.Background>
+                <ImageBrush Stretch="Fill" ImageSource="/Assets/Background/Xephangcanhan.jpg"/>
+            </Border.Background>
+        </Border>
+        <Canvas x:Name="canvasThanhtich">
+            <Image Height="140" Canvas.Left="10" Canvas.Top="41" Width="163" Source="/Assets/Icon/1.png"/>
+            <TextBlock Canvas.Left="173" TextWrapping="Wrap" FontSize="25" Text="THÀNH TÍCH CÁ NHÂN" Canvas.Top="94"/>
+            <Image Source="/Assets/Icon/delete.png" Height="50" Canvas.Left="217" Canvas.Top="699" Width="50"/>
+            <TextBlock Canvas.Left="151" TextWrapping="Wrap" Text="Xóa bảng thành tích" Canvas.Top="754"/>
+
+        </Canvas>
+
+        <Canvas x:Name="canvasThongbao" Visibility="Collapsed">
+            <TextBlock Text=""></TextBlock>
+        </Canvas>
+    </Grid>
+
+</phone:PhoneApplicationPage>
