@@ -23,20 +23,25 @@ namespace ThapHaNoi_NguyenThanhPhi
             sounds.Play("main");
         }
 
-        /*********************************************************************************
-         * 
-         * 
-         * 
-         * 
-         * 
-         *********************************************************************************/
+        /// <summary>
+        /// HAM SU LY SU KIEN CHAM VAO CHOI DON
+        /// </summary>
+        /// <param name="numDiskContinue"></param>
+        /// <purpose></purpose>
+        /// <work></work>
         private void btn_Start_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
             sounds.Stop("main");
-            NavigationService.Navigate(new Uri("/ThapHaNoi.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Source/Choidon/PlayGame.xaml", UriKind.Relative));
         }
 
+        /// <summary>
+        /// HAM SU LY SU KIEN CHAM VAO CHOI THACH DAU TRUC TUYEN
+        /// </summary>
+        /// <param name="numDiskContinue"></param>
+        /// <purpose></purpose>
+        /// <work></work>
         private void Tap_Online(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
@@ -44,13 +49,12 @@ namespace ThapHaNoi_NguyenThanhPhi
             NavigationService.Navigate(new Uri("/Source/Thachdau/DangNhap.xaml", UriKind.Relative));
         }
 
-        /*********************************************************************************
-         * 
-         * 
-         * 
-         * 
-         * 
-         *********************************************************************************/
+        /// <summary>
+        /// HAM SU LY SU KIEN CHAM VAO 3 COC TREN GIAO DIEN
+        /// </summary>
+        /// <param name="numDiskContinue">/param>
+        /// <purpose></purpose>
+        /// <work></work>
         private void btn_MoreGame_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
@@ -58,13 +62,12 @@ namespace ThapHaNoi_NguyenThanhPhi
             NavigationService.Navigate(new Uri("/MoreGame.xaml", UriKind.Relative));
         }
 
-        /*********************************************************************************
-         * 
-         * 
-         * 
-         * 
-         * 
-         *********************************************************************************/
+        /// <summary>
+        /// HAM SU LY SU KIEN CHAM VAO BIEU TUONG AM THANH
+        /// </summary>
+        /// <param name="numDiskContinue">/param>
+        /// <purpose></purpose>
+        /// <work></work>
         private void btnSound_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
@@ -80,6 +83,12 @@ namespace ThapHaNoi_NguyenThanhPhi
             }
         }
 
+        /// <summary>
+        /// HAM SU LY SU KIEN CHAM VAO NUT GIOI THIEU
+        /// </summary>
+        /// <param name="numDiskContinue">/param>
+        /// <purpose></purpose>
+        /// <work></work>
         private void imgGioithieu(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
@@ -87,6 +96,12 @@ namespace ThapHaNoi_NguyenThanhPhi
             NavigationService.Navigate(new Uri("/Source/Huongdan.xaml", UriKind.Relative));
         }
 
+        /// <summary>
+        /// HAM SU LY SU KIEN CHAM VAO NUT THANH TICH
+        /// </summary>
+        /// <param name="numDiskContinue">/param>
+        /// <purpose></purpose>
+        /// <work></work>
         private void btnThanhtich(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
@@ -94,46 +109,5 @@ namespace ThapHaNoi_NguyenThanhPhi
             NavigationService.Navigate(new Uri("/Source/Choidon/Thanhtichcanhan.xaml", UriKind.Relative));
         }
 
-
-
-
-
-
-
-
-
-         /*********************************************************************************
-         * 
-         * 
-         * 
-         * 
-         * 
-         *********************************************************************************/
-
-
-        /*********************************************************************************
-        * 
-        * 
-        * 
-        * 
-        * 
-        *********************************************************************************/
-
-
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
-
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
     }
 }

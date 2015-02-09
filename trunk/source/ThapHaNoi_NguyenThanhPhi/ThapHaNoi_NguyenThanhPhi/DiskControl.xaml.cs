@@ -19,11 +19,43 @@ namespace ThapHaNoi_NguyenThanhPhi
         private TranslateTransform move = new TranslateTransform();
         private TransformGroup rectangleTransforms = new TransformGroup();
 
+        public int Number { get; set; }
+
         public DiskControl()
         {
             InitializeComponent();
-
+            NumberDisk.Text = Number.ToString();
         }
+
+        
+
+        public DiskControl(int num)
+        {
+            InitializeComponent();
+            Number = num;
+            NumberDisk.Text = Number.ToString();
+        }
+
+        public override string ToString()
+        {
+            return Number.ToString();
+        }
+
+        /*
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            DiskControl disk = obj as DiskControl;
+            if ((System.Object)disk == null)
+            {
+                return false;
+            }
+            return disk.Number == Number;
+        }
+         * */
 
         public string Text
         {

@@ -8,16 +8,9 @@ namespace ThapHaNoi_NguyenThanhPhi
 {
     class GameState
     {
-        Stack<DiskControl> stackA, stackB, stackC;
-
-
-        public GameState()
-        {
-            stackA = new Stack<DiskControl>();
-            stackB = new Stack<DiskControl>();
-            stackC = new Stack<DiskControl>();
-        }
-
+        public static List<Pole> Poles = new List<Pole>();
+        public static int MoveCount = 0;
+        public static int NumberOfDisks = 0;
 
     }
 }
