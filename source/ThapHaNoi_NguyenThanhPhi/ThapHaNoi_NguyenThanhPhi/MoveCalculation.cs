@@ -10,31 +10,49 @@ using System.Windows.Media.Imaging;
 
 namespace ThapHaNoi_NguyenThanhPhi
 {
-    class MoveCalculation
+    public static class MoveCalculation
     {
-        DiskControl diskTemp;
+        static int moveCounter = 0;
 
-        int from = -1;
-        int to = -1;
+        public static List<Move> moves { get; set; }
 
-
-
-
-        public int GetNamCanvas(Canvas _canvas)
+        public static List<Move> Solve(int numDisk)
         {
-            switch (_canvas.Name)
+            moveCounter = 0;
+            moves = new List<Move>();
+            Solution(numDisk, 0, 2, 1);
+            return moves;
+        }
+
+        public static int GetNumMove()
+        {
+            return moveCounter;
+        }
+
+
+        public static void Solution(int n, int RodA, int RodC, int RodB)
+        {
+            //System.Threading.Thread.Sleep(1000);
+            if (n == -1)
             {
-                case "CavasRodA":
-                    return 0;
-                case "CavasRodB":
-                    return 1;
-                case "CavasRodC":
-                    return 2;
-                default:
-                    return -1;
+                return;
             }
 
+            if (n == 1)
+            {
+                moves.Add(new Move(RodA, RodC));
+                return;
+            }
+            else
+            {
+                Solution(n - 1, RodA, RodB, RodC);
+                Solution(1, RodA, RodC, RodB);
+                Solution(n - 1, RodB, RodC, RodA);
+            }
         }
+
+        /*
+
         public void Solution(int n, Canvas RodA, Canvas RodC, Canvas RodB, Pole[] _pole)
         {
             //System.Threading.Thread.Sleep(1000);
@@ -56,7 +74,7 @@ namespace ThapHaNoi_NguyenThanhPhi
                 Solution(n - 1, RodB, RodC, RodA, _pole);
             }
         }
-
+         * */
 
 
     }

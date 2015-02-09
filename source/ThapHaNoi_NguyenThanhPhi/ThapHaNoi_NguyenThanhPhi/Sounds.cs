@@ -16,7 +16,7 @@ namespace ThapHaNoi_NguyenThanhPhi
     class Sounds
     {
         SoundEffect soundEffect;
-        SoundEffectInstance main, play, win, lose, wrong, click;
+        SoundEffectInstance main, play, win, lose, wrong, click, bangxephang, select;
         public bool mute;
 
 
@@ -31,16 +31,20 @@ namespace ThapHaNoi_NguyenThanhPhi
             click = soundEffect.CreateInstance();
             click.Volume = (float)0.6;
 
-            /*
-            soundEffect = SoundEffect.FromStream(TitleContainer.OpenStream("./Assets/Audio/win.wav"));
+            
+            soundEffect = SoundEffect.FromStream(TitleContainer.OpenStream("./Assets/Audio/thang.wav"));
             win = soundEffect.CreateInstance();
             win.Volume = (float)0.9;
-             *
+             
 
             soundEffect = SoundEffect.FromStream(TitleContainer.OpenStream("./Assets/Audio/wrong.wav"));
             wrong = soundEffect.CreateInstance();
             wrong.Volume = (float)0.9;
-             * */
+
+            //soundEffect = SoundEffect.FromStream(TitleContainer.OpenStream("./Assets/Audio/luachon.mp3"));
+            //// = soundEffect.CreateInstance();
+            //select.Volume = (float)0.9;
+            
         }
 
         public Sounds(string state)
@@ -63,6 +67,8 @@ namespace ThapHaNoi_NguyenThanhPhi
                 case "wrong": wrong.Play();
                     break;
                 case "win": win.Play();
+                    break;
+                case "select": select.Play();
                     break;
 
                 default:
@@ -94,6 +100,11 @@ namespace ThapHaNoi_NguyenThanhPhi
                 case "playing": if (play.State == SoundState.Playing) play.Stop();
                     break;
 
+                case "select": select.Stop();
+                    break;
+
+                case "win": win.Stop();
+                    break;
                 default:
                     break;
             }

@@ -39,7 +39,6 @@ namespace ThapHaNoi_NguyenThanhPhi
             Sounds sounds = new Sounds();
             Function func = new Function();
             GameState game = new GameState();
-            MoveCalculation moveCalculation = new MoveCalculation();
 
             TimeSpan time, time_auto;
             private DispatcherTimer _timer, _timer_auto;
@@ -81,11 +80,6 @@ namespace ThapHaNoi_NguyenThanhPhi
             _timer = new DispatcherTimer();
             _timer.Tick += new EventHandler(TimerTick);
             _timer.Interval = new TimeSpan(0, 0, 0, 1);
-
-            //Khoi tao bo dem thoi gian cho ham MoveAutuDisk
-            _timer_auto = new DispatcherTimer();
-            _timer_auto.Tick += new EventHandler(TimerTickAutoMoveDisk);
-            _timer_auto.Interval = new TimeSpan(0, 0, 0, 1);
 
         }
 
@@ -441,16 +435,6 @@ namespace ThapHaNoi_NguyenThanhPhi
             }
         }
 
-        /// <summary>
-        /// TIME STICK
-        /// </summary>
-        /// <param name="numDiskContinue">Su dung de dem thoi gian, don vi 1 giay cap nhat 1 lan</param>
-        void TimerTickAutoMoveDisk(object sender, EventArgs e)
-        {
-            time_auto = time_auto.Add(new TimeSpan(0, 0, 1));
-            txtThoigian.Text = string.Format(Contants.TimeFormat, time_auto.Hours, time_auto.Minutes, time_auto.Seconds);
-            moveCalculation.Solution(numDisk, CavasRodA, CavasRodC, CavasRodB, _pole);
-        }
 
     }
 }

@@ -8,7 +8,7 @@ namespace ThapHaNoi_NguyenThanhPhi
 {
     class Contants
     {
-        public const int SpaceDisk = 31;
+        public const int SpaceDisk = 32;
         public const int LeftCanvas = 40;
         public const int TopDisk = 350;
         public const string TimeFormat = "{0:00}:{1:00}:{2:00}";

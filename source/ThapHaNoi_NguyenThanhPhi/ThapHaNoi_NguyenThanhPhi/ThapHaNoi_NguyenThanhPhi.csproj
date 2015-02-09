@@ -106,6 +106,7 @@
     <Compile Include="Moregame.xaml.cs">
       <DependentUpon>Moregame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Move.cs" />
     <Compile Include="MoveCalculation.cs" />
     <Compile Include="Pole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,6 +116,9 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Sounds.cs" />
+    <Compile Include="Source\Choidon\PlayGame.xaml.cs">
+      <DependentUpon>PlayGame.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Source\Choidon\Thanhtichcanhan.xaml.cs">
       <DependentUpon>Thanhtichcanhan.xaml</DependentUpon>
     </Compile>
@@ -151,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Moregame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Choidon\PlayGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,8 +204,12 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Audio\bangxephang.wav" />
     <Content Include="Assets\Audio\click.wav" />
+    <Content Include="Assets\Audio\luachon.mp3" />
     <Content Include="Assets\Audio\main.wav" />
+    <Content Include="Assets\Audio\thang.wav" />
+    <Content Include="Assets\Audio\wrong.wav" />
     <Content Include="Assets\Background\Dangnhap.png" />
     <Content Include="Assets\Background\beach.jpg" />
     <Content Include="Assets\Background\coc b.png" />

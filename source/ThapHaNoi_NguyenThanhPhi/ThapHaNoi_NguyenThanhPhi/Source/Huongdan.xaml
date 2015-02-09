@@ -11,7 +11,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="False">
 
@@ -54,22 +54,19 @@
                     </toolkit:WrapPanel>
 
                     <TextBlock TextWrapping="Wrap" Text="Người chơi chọn số dĩa cho trước, ứng dụng hỗ trợ từ 3 đến 10 dĩa. Tiếp theo người chơi tiến hành chơi theo quy luật." Width="393" FontSize="26.667" Foreground="#FF0B0B0B" Margin="35,15,0,0"/>
-                    <Image Margin="120,15,0,0" Source="/Assets/Background/Hinhnen.jpg" HorizontalAlignment="Left" Width="250" Height="250"/>
+                    <Image Margin="120,15,0,0" Source="/Assets/Background/icon_huongdan.jpg" HorizontalAlignment="Left" Width="250" Height="250"/>
                     <TextBlock TextWrapping="Wrap" Text="Luật chơi rất đơn giản: Người chơi nhấp chọn 1 cọc bất kì và nhấp chọn cọc mà mình muốn di chuyển. Nếu người chơi muốn bỏ chọn thì nhấp đúng trở lại cọc trước đó. Khi tiến hành chơi, người chơi chỉ được phép di chuyển dĩa sao cho dĩa nhỏ phải nằm trên dĩa lớn hơn và mỗi lần di chuyển chỉ được di chuyển 1 dĩa duy nhất." Width="393" FontSize="26.667"  Foreground="#FF0B0B0B" Margin="35,15,0,0"/>
-                    <Image Height="100" Width="100" Margin="190,15,0,0" Source="/Assets/Background/Hinhnen.jpg"/>
+                    <Image Height="100" Width="100" Margin="190,15,0,0" Source="/Assets/Background/icon_huongdan.jpg"/>
                     <toolkit:WrapPanel Height="100" Width="456" Margin="0,15,0,0">
-                        <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="456" Source="/Assets/Background/Hinhnen.jpg" Margin="-50,0,0,0"/>
+                        <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="456" Source="/Assets/Background/icon_huongdan.jpg" Margin="-50,0,0,0"/>
                     </toolkit:WrapPanel>
                     <TextBlock TextWrapping="Wrap" Width="393" FontSize="26.667"  Foreground="#FF0B0B0B" Margin="35,15,0,0"><Run Text="Để tham gia và phần chơi trực tuyến, người chơi cần có tài khoản đăng nhập vào máy chủ, nếu chưa có người chơi có thể đăng kí mới tài khoản miễn phí. Sau khi đăng nhập người chơi có thể đổi mật khẩu của tài khoản bằng cách chạm vào tên tài khoản của mình tại góc trên bên trái màn hình danh sách phòng chơi."/><LineBreak/><Run Text="Trong phần chơi trực tuyến, người chơi có thể tạo phòng chơi, đặt mật khẩu, chọn hình, mức độ chơi cho phòng. Người chơi khách không có quyền thay đổi thông tin cấu hình phòng chơi."/><LineBreak/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
                     <TextBlock TextWrapping="Wrap" Width="401" FontSize="26.667"  Foreground="#FF0B0B0B" Margin="35,15,0,0"><Run Text="Nếu chủ phòng đợi chờ quá lâu vẫn có thể chơi 1 mình trong một phòng."/><LineBreak/><Run Text="Khi phòng đã có 2 người và cả 2 người đều đã sẵn sàng chơi thì phần thi tài mới bắt đầu."/></TextBlock>
                     <toolkit:WrapPanel Height="100" Width="456" Margin="0,15,0,0">
-                        <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="456" Source="/Assets/Background/Hinhnen.jpg" Margin="-50,0,0,0"/>
+                        <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="456" Source="/Assets/Background/icon_huongdan.jpg" Margin="-50,0,0,0"/>
                     </toolkit:WrapPanel>
-                    <TextBlock TextWrapping="Wrap" Width="393" FontSize="26.667"  Foreground="#FF0B0B0B" Margin="35,15,0,0"><Run Text="Tại phần chơi đơn, người chơi hoàn thành xong phần chơi của mình sẽ được ghi nhận số bước và thời gian để cập nhật lên bảng thành tích."/><LineBreak/><Run Text="Luật cập nhật như sau: số bước ít hơn sẽ được cập nhật, nếu số bước bằng nhau thì xét đến thời gian, thời gian ít hơn thì thành tích sẽ được cập nhật."/></TextBlock>
-                    <TextBlock TextWrapping="Wrap" Width="393" Text="Tại phần chơi mạng, người thắng cuộc sẽ có cơ hội được cập nhật thành tích lên bảng xếp hạng nếu: thời gian hoàn thành ít hơn thành tích đã lập được, trong trường hợp thời gian bằng nhau thì xét đến số bước di chuyển, số bước ít hơn là một lợi thế." FontSize="26.667" Foreground="#FF0B0B0B" Margin="35,15,0,0" />
-                    <toolkit:WrapPanel Height="173" Width="456" Margin="0,15,0,0">
-                        <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="400" Source="/Assets/Background/Hinhnen.jpg" Margin="61,0,0,0"/>
-                    </toolkit:WrapPanel>
+                    <TextBlock TextWrapping="Wrap" Width="393" FontSize="26.667"  Foreground="#FF0B0B0B" Margin="35,15,0,0"><Run Text="Tại phần chơi đơn, người chơi hoàn thành xong phần chơi của mình sẽ được ghi nhận số bước và thời gian để cập nhật lên bảng thành tích."/><LineBreak/><Run Text="Luật cập nhật như sau: thời gian ngắn nhất sẽ được cập nhật, nếu thời gian bằng nhau thì xét đến số bước chuyển"/></TextBlock>
+                    <TextBlock TextWrapping="Wrap" Width="393" Text="Tại phần chơi thách đấu trực tuyến, người thắng cuộc sẽ có cơ hội được cập nhật thành tích lên bảng xếp hạng nếu: thời gian hoàn thành ít hơn thành tích đã lập được, trong trường hợp thời gian bằng nhau thì xét đến số bước di chuyển." FontSize="26.667" Foreground="#FF0B0B0B" Margin="35,15,0,0" />
 
                 </ListBox>
             </Grid>

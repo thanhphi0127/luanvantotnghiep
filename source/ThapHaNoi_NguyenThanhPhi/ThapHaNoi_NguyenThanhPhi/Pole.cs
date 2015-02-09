@@ -16,8 +16,13 @@ namespace ThapHaNoi_NguyenThanhPhi
 {
     public class Pole
     {
+        List<Color> _arrayColor = new List<Color>();
+
         public Stack<DiskControl> stack;
         Function func = new Function();
+
+        public int Number { get; set; }
+
         public Pole()
         {
             stack = new Stack<DiskControl>();
@@ -44,14 +49,13 @@ namespace ThapHaNoi_NguyenThanhPhi
             //Khoi tao so luong n dia
             for (int i = 1; i <= numDisk; i++)
             {
-                var disc = new DiskControl
-                {
-                    Text = (numDisk - i - 1).ToString(),
-                    FontSize = 30,
-                    Background = new SolidColorBrush(Colors.Blue),
-                    Width = 140 - 10 * i,
-                    Height = 30
-                };
+                DiskControl disc = new DiskControl(numDisk - i + 1);
+                disc.Width = 145 - 10 * i;
+                disc.Height = 31;
+                disc.Number = numDisk - i + 1;
+                //disc.RectangleColor = _arrayColor[i - 1];
+                disc.Background = new SolidColorBrush(Colors.Blue);
+                
 
                 //Them vao giao dien dia  o vi tri thu i
                 CavasRod.Children.Add(disc);
@@ -79,7 +83,7 @@ namespace ThapHaNoi_NguyenThanhPhi
         {
             DiskControl getTop;
             //Truong hop stack = null
-            if (stack.Count == 0)
+            if (IsEmpty())
             {
                 stack.Push(temp);
                 CavasRod.Children.Add(temp);
@@ -107,19 +111,37 @@ namespace ThapHaNoi_NguyenThanhPhi
         /// </work>
         public DiskControl RemoveDiskFromPole(Canvas CavasRod)
         {
-            if (stack.Count == 0) return null;
+            if (IsEmpty()) return null;
             DiskControl temp = stack.Pop();
             func.Remove(CavasRod, temp.Tag.ToString());
             return temp;
         }
 
+        /// <summary>
+        /// HAM THIET DAT GIA TRI TOP KHI CLICK LAN 1
+        /// </summary>
+        /// <param name="numDiskContinue">T</param>
+        /// <purpose></purpose>
+        /// <work>
+        /// </work>
         public DiskControl SetTopDiskFromPole()
         {
-            if (stack.Count == 0) return null;
+            if (IsEmpty()) return null;
             DiskControl diskTab = stack.Peek();
             Canvas.SetTop(diskTab, 0);
             return diskTab;
         }
+
+        /// <summary>
+        /// HAM KIEM TRA STACK RONG
+        /// </summary>
+        ///
+        public bool IsEmpty()
+        {
+            return (0 == stack.Count);
+            
+        }
+
 
     }
 }
