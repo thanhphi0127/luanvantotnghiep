@@ -24,6 +24,10 @@ using Microsoft.Xna.Framework.GamerServices;
 using System.Windows.Threading;
 using System.Threading;
 using System.Windows.Media.Imaging;
+using System.IO;
+
+using System.Threading.Tasks;
+
 
 namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
 {
@@ -54,6 +58,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             //Cac bien kieu giao dien de luu tru trang thai chuyen du lieu
             Canvas from, to;
             DiskControl diskTab, temp;
+
         #endregion
 
         /// <summary>
@@ -80,10 +85,6 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             _timer.Tick += new EventHandler(TimerTick);
             _timer.Interval = new TimeSpan(0, 0, 0, 1);
 
-            //Khoi tao bo dem thoi gian cho ham MoveAutuDisk
-            _timer_auto = new DispatcherTimer();
-            _timer_auto.Tick += new EventHandler(TimerTickAutoMoveDisk);
-            _timer_auto.Interval = new TimeSpan(0, 0, 0, 1);
 
         }
 
@@ -116,7 +117,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             txtThoigian.Text = Contants.DefaultTimeValue;
 
             //Them dia vao coc A 
-            _pole[0].Init(numDiskContinue, CavasRodA);
+            _pole[0].Init(numDiskContinue, CavasRodA, false);
             moveCount = 0;
 
             //Visibility cac canvas bat dau choi va chien thang
@@ -346,15 +347,6 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
 
         
         /// <summary>
-        /// TIME STICK
-        /// </summary>
-        /// <param name="numDiskContinue">Su dung de dem thoi gian, don vi 1 giay cap nhat 1 lan</param>
-        void TimerTickAutoMoveDisk(object sender, EventArgs e)
-        {
-            time_auto = time_auto.Add(new TimeSpan(0, 0, 1));
-            txtThoigian.Text = string.Format(Contants.TimeFormat, time_auto.Hours, time_auto.Minutes, time_auto.Seconds);
-        }
-        /// <summary>
         /// SU KIEN NHAN VAO "PLAY"
         /// </summary>
         /// <param name="numDiskContinue"></param>
@@ -366,9 +358,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
 
             _timer.Start();
             numDisk = int.Parse(listNumDisk.SelectedItem.ToString());
-
-            //Them dia vao COC A
-            _pole[0].Init(numDisk, CavasRodA);
+            RestartGame(numDisk);
 
             canvasStart.Visibility = Visibility.Collapsed;
             canvasWin.Visibility = Visibility.Collapsed;
@@ -433,56 +423,63 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             NavigationService.Navigate(new Uri("/Source/Huongdan.xaml", UriKind.Relative));
         }
 
+        private void btnChoi4Coc(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            sounds.Play("click");
+            NavigationService.Navigate(new Uri("/Source/Choidon/PlayGame_Hanoi4.xaml", UriKind.Relative));
+        }
+
         private void Tap_Trogiup(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            
+            btnTrogiup.Visibility = Visibility.Collapsed;
             sounds.Play("click");
+
             RestartGame(numDisk);
             SolveGame();
         }
 
-        void wait(int x)
-        {
-            DateTime t = DateTime.Now;
-            DateTime tf = DateTime.Now.AddSeconds(x);
 
-            while (t < tf)
-            {
-                t = DateTime.Now;
-            }
-        }
 
         public void SolveGame()
         {
-            _timer_auto.Start();
-            EventHandler completed = null;
-            List<Move> moves = MoveCalculation.Solve(numDisk);
+            _timer.Start();
+            List<Move> moves = MoveCalculation.SolveHanoi3(numDisk);
 
+
+            ///////////////////////////////////////
+            //////////////////////////////////////
+            
             foreach (Move move in moves)
             {
+                //ProcessDataAsync(move);
 
-                
-                completed = (s, e) =>
-                {
-                    txtSolve.Text = move.ToString();
-                    _pole[move.From].SetTopDiskFromPole();
-
-                    MakeMove(move);
-                };
-                 
-                
-
-
+                //ProcessDataAsync_Move(move);
+                txtSolve.Text += move.ToString();
+                _pole[move.From].SetTopDiskFromPole();
+                MakeMove(move);
             }
+            
 
-                
+            /*
+            for (int i = 0; i < moves.Count; i++)
+            {
+                //ProcessDataAsync(moves[i]);
+
+                ProcessDataAsync_Move(moves[i]);
+            }
+             * */
+
+
+           //MessageBox.Show(_pole[2].stack.Count.ToString(), "Numdisk in function Solve", MessageBoxButton.OK);
 
             if (_pole[2].stack.Count == numDisk)
             {
-                _timer_auto.Stop();
-                canvasWin.Visibility = Visibility.Visible;
+                _timer.Stop();
+                MessageBox.Show(moves.Count.ToString(), "Con...", MessageBoxButton.OK);
+                //canvasWin.Visibility = Visibility.Visible;
             }
         }
+
 
         public void MakeMove(Move move)
         {
@@ -501,6 +498,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
                     break;
             }
 
+            if (temp == null) return;
             switch (move.To)
             {
                 case 0:
@@ -515,21 +513,83 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
                 default:
                     break;
             }
-
+            //Update_UI();
+            //MessageBox.Show(_pole[2].stack.Count.ToString(), "Numdisk in Make move", MessageBoxButton.OK);
         }
 
-        public static void DelayAction(int millisecond, Action action)
+
+
+        private void ProcessDataAsync(Move move)
         {
-            var timer = new DispatcherTimer();
-            timer.Tick += delegate
+            // Background worker
+            var myWorker = new BackgroundWorker
             {
-                action.Invoke();
-                timer.Stop();
+                WorkerReportsProgress = true,
             };
 
-            timer.Interval = TimeSpan.FromMilliseconds(millisecond);
-            timer.Start();
+            // Do Work
+            myWorker.DoWork += delegate(object sender, DoWorkEventArgs e)
+            {
+                // Update progress (50 is just an example percent value out of 100)
+                Thread.Sleep(800);
+                myWorker.ReportProgress(800);
+            };
+
+
+            // Work has been completed
+            myWorker.RunWorkerCompleted += delegate(object sender, RunWorkerCompletedEventArgs e)
+            {
+                Update_UI();
+                // Work completed, you are back in the UI thread.
+                txtSolve.Text += move.ToString();
+                _pole[move.From].SetTopDiskFromPole();
+            };
+
+            // Run Worker
+            myWorker.RunWorkerAsync();
         }
+
+
+        private void ProcessDataAsync_Move(Move move)
+        {
+            // Background worker
+            var myWorker = new BackgroundWorker
+            {
+                WorkerReportsProgress = true,
+            };
+
+            // Do Work
+            myWorker.DoWork += delegate(object sender, DoWorkEventArgs e)
+            {
+                // Update progress (50 is just an example percent value out of 100)
+                Thread.Sleep(1000);
+                myWorker.ReportProgress(1000);
+            };
+
+
+            // Work has been completed
+            myWorker.RunWorkerCompleted += delegate(object sender, RunWorkerCompletedEventArgs e)
+            {
+                Update_UI();
+                // Work completed, you are back in the UI thread.
+                txtSolve.Text += move.ToString();
+                MakeMove(move);
+            };
+
+            // Run Worker
+            myWorker.RunWorkerAsync();
+        }
+
+
+        private void Update_UI()
+        {
+            CavasRodA.UpdateLayout();
+            CavasRodB.UpdateLayout();
+            CavasRodC.UpdateLayout();
+            LayoutRoot.UpdateLayout();
+        }
+
+
 
 
     }
@@ -555,3 +615,57 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         };
         worker.RunWorkerAsync();
  * */
+
+
+/*
+            
+foreach (Move move in moves)
+{
+    EventHandler completed = null;
+    completed = (s, e) =>
+    {
+        _animation.Completed -= completed;
+        txtSolve.Text = move.ToString();
+        _pole[move.From].SetTopDiskFromPole();
+        MakeMove(move);
+    };
+                    
+
+        _animation.Completed += completed;
+        // start a controllable animation
+        _animation.Begin();
+}
+ * */
+
+/*
+ * 
+ *         public void UpdateUI(Action displayCall)
+        {
+            if (Dispatcher.CheckAccess() == false)
+            {
+                Dispatcher.BeginInvoke(() =>
+                     displayCall()
+                );
+            }
+            else
+            {
+                displayCall();
+            }
+        }
+ * 
+
+            Storyboard _animation;
+            _animation = (Storyboard)Resources["moveStoryboard"];
+            //Dispatcher.BeginInvoke((Action)(() => Thread.Sleep(500)));
+ * 
+ *             IProgress<object> progress = new Progress<object>(_ => UpdateTicker());
+            Task.Run(async () =>
+            {
+                while (true)
+                {
+                    await Task.Delay(1000);
+                    progress.Report(null);
+                }
+
+            });
+*/

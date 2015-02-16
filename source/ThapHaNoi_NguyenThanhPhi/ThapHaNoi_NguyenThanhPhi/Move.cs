@@ -15,6 +15,7 @@ namespace ThapHaNoi_NguyenThanhPhi
 			From = from; To = to;
 		}
 
+
 		public override string ToString() {
 			return string.Format("Move {0} to {1}", From, To);
 

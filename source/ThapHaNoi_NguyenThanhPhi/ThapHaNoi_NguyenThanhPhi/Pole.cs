@@ -42,8 +42,18 @@ namespace ThapHaNoi_NguyenThanhPhi
         ///       2.Them vao CanvasA cac dia vua duoc tao (do rong cua dia lon nhat la 140, dia tiep theo co do rong giam di 10 don vi, 
         ///       dich chuyen qua ben trai 5 don vi) va tuong tu voi cac dia con lai cho den het. Do cao giam di 1 luong Contants.SpaceDisk = 31 don vi
         ///       3.Them vao stackA => chu tap cac dia Coc A</work>
-        public void Init(int numDisk, Canvas CavasRod)
+        public void Init(int numDisk, Canvas CavasRod, bool Hanoi4)
         {
+            int left;
+            if (Hanoi4)
+            {
+                left = Contants.LeftCanvas4;
+            }
+            else
+            {
+                left = Contants.LeftCanvas;
+            }
+
             int topDisk = Contants.TopDisk;
 
             //Khoi tao so luong n dia
@@ -61,7 +71,7 @@ namespace ThapHaNoi_NguyenThanhPhi
                 CavasRod.Children.Add(disc);
                 disc.Tag = i.ToString();
                 Canvas.SetTop(disc, topDisk);
-                Canvas.SetLeft(disc, Contants.LeftCanvas + 5 * i);
+                Canvas.SetLeft(disc, left + 5 * i);
                 topDisk -= Contants.SpaceDisk;
 
                 //Them vao stack dia o vi tri thu i

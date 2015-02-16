@@ -112,7 +112,7 @@ namespace ThapHaNoi_NguyenThanhPhi
             txtThoigian.Text = Contants.DefaultTimeValue;
 
             //Them dia vao coc A 
-            _pole[0].Init(numDiskContinue, CavasRodA);
+            _pole[0].Init(numDiskContinue, CavasRodA, false);
             moveCount = 0;
 
             //Visibility cac canvas bat dau choi va chien thang
@@ -353,7 +353,7 @@ namespace ThapHaNoi_NguyenThanhPhi
             numDisk = int.Parse(listNumDisk.SelectedItem.ToString());
 
             //Them dia vao COC A
-            _pole[0].Init(numDisk, CavasRodA);
+            _pole[0].Init(numDisk, CavasRodA, false);
 
             canvasStart.Visibility = Visibility.Collapsed;
             canvasWin.Visibility = Visibility.Collapsed;
