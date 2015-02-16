@@ -43,6 +43,24 @@
         <DataTemplate x:Name="lpkFullItemTemplate">
             <TextBlock Text="{Binding comboNumDisk}" Style="{StaticResource PhoneTextTitle2Style}"/>
         </DataTemplate>
+
+        <LinearGradientBrush EndPoint="1,0" x:Key="poleFill">
+            <GradientStop Color="Black" Offset="0" />
+            <GradientStop Color="LightGray" Offset="1" />
+        </LinearGradientBrush>
+        <PathGeometry x:Key="animGeometry">
+            <PathFigure IsClosed="False" >
+                <PolyLineSegment Points="150,300 150,450 30,450" />
+            </PathFigure>
+        </PathGeometry>
+        
+        <Storyboard x:Key="moveStoryboard" SpeedRatio="{Binding Speed}">
+            <DoubleAnimationUsingKeyFrames Duration="0:0:3"  
+					Storyboard.TargetProperty="(Canvas.Left)"/>
+            <DoubleAnimationUsingKeyFrames Duration="0:0:3" 
+					Storyboard.TargetProperty="(Canvas.Bottom)"/>
+        </Storyboard>
+        
     </phone:PhoneApplicationPage.Resources>
 
 
@@ -79,7 +97,7 @@
         </Grid>
 
 
-        <Button Content="Trợ giúp" HorizontalAlignment="Left" Margin="99,3,0,0" VerticalAlignment="Top" Background="#FFF0004C" FontSize="14" Tap="Tap_Trogiup" Height="60" Width="114"/>
+        <Button x:Name="btnTrogiup" Content="Trợ giúp" HorizontalAlignment="Left" Margin="99,3,0,0" VerticalAlignment="Top" Background="#FFF0004C" FontSize="14" Tap="Tap_Trogiup" Height="60" Width="114"/>
 
         <Button Content="Luật chơi" Tap="Tap_LuatChoi" HorizontalAlignment="Left" Margin="-2,2,0,0" VerticalAlignment="Top" Background="#FF0913D8" FontSize="16" Height="63" Width="117"/>
 
@@ -111,6 +129,7 @@
 
         </Canvas>
         <TextBlock x:Name="txtSolve" HorizontalAlignment="Left" Margin="17,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Button x:Name="txtChoi4Coc" Tap="btnChoi4Coc" FontSize="15" Background="Blue" Content="Chơi 4 cọc" HorizontalAlignment="Left" Margin="-5,54,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 

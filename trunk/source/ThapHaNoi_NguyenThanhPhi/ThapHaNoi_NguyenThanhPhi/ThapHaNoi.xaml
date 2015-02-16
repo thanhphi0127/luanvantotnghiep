@@ -78,7 +78,6 @@
             <Image Source="/Assets/Icon/left-arrow-icon.png" Tap="imgBack" HorizontalAlignment="Left" Height="58" Margin="10,421,0,0" VerticalAlignment="Top" Width="64"/>
         </Grid>
 
-        
         <Button Content="Trợ giúp" HorizontalAlignment="Left" Margin="99,3,0,0" VerticalAlignment="Top" Background="#FFF0004C" FontSize="14" Tap="Tap_Trogiup" Height="60" Width="114"/>
 
         <Button Content="Luật chơi" Tap="Tap_LuatChoi" HorizontalAlignment="Left" Margin="-2,2,0,0" VerticalAlignment="Top" Background="#FF0913D8" FontSize="16" Height="63" Width="117"/>

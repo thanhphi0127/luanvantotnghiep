@@ -101,5 +101,6 @@ E:\ViCopper\NĂM 2014-2015\HKII\Luan Van TN\source\ThapHaNoi_NguyenThanhPhi\Thap
 E:\ViCopper\NĂM 2014-2015\HKII\Luan Van TN\source\ThapHaNoi_NguyenThanhPhi\ThapHaNoi_NguyenThanhPhi\obj\x86\Debug\XapCacheFile.xml
 E:\ViCopper\NĂM 2014-2015\HKII\Luan Van TN\source\ThapHaNoi_NguyenThanhPhi\ThapHaNoi_NguyenThanhPhi\obj\x86\Debug\Source\Choidon\Thanhtichcanhan.g.cs
 E:\ViCopper\NĂM 2014-2015\HKII\Luan Van TN\source\ThapHaNoi_NguyenThanhPhi\ThapHaNoi_NguyenThanhPhi\obj\x86\Debug\Source\Huongdan.g.cs
-E:\ViCopper\NĂM 2014-2015\HKII\Luan Van TN\source\ThapHaNoi_NguyenThanhPhi\ThapHaNoi_NguyenThanhPhi\obj\x86\Debug\ThapHaNoi_NguyenThanhPhi.csprojResolveAssemblyReference.cache
 E:\ViCopper\NĂM 2014-2015\HKII\Luan Van TN\source\ThapHaNoi_NguyenThanhPhi\ThapHaNoi_NguyenThanhPhi\obj\x86\Debug\Source\Choidon\PlayGame.g.cs
+E:\ViCopper\NĂM 2014-2015\HKII\Luan Van TN\source\ThapHaNoi_NguyenThanhPhi\ThapHaNoi_NguyenThanhPhi\obj\x86\Debug\ThapHaNoi_NguyenThanhPhi.csprojResolveAssemblyReference.cache
+E:\ViCopper\NĂM 2014-2015\HKII\Luan Van TN\source\ThapHaNoi_NguyenThanhPhi\ThapHaNoi_NguyenThanhPhi\obj\x86\Debug\Source\Choidon\PlayGame_Hanoi4.g.cs

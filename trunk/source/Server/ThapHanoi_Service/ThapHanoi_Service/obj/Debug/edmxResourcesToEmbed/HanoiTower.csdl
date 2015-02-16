@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TowerHanoiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityContainer Name="TowerHanoiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MUCDOes" EntityType="TowerHanoiModel.MUCDO" />
+    <EntitySet Name="NGUOICHOIs" EntityType="TowerHanoiModel.NGUOICHOI" />
+    <EntitySet Name="NGUOICHOI_PHONGCHOI" EntityType="TowerHanoiModel.NGUOICHOI_PHONGCHOI" />
+    <EntitySet Name="PHONGCHOIs" EntityType="TowerHanoiModel.PHONGCHOI" />
+    <EntitySet Name="THANHTICHes" EntityType="TowerHanoiModel.THANHTICH" />
+  </EntityContainer>
+  <EntityType Name="MUCDO">
+    <Key>
+      <PropertyRef Name="SODIA" />
+    </Key>
+    <Property Name="SODIA" Type="Int16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NGUOICHOI">
+    <Key>
+      <PropertyRef Name="TAIKHOAN" />
+    </Key>
+    <Property Name="TAIKHOAN" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="true" />
+    <Property Name="MATKHAU" Type="String" MaxLength="50" Unicode="false" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="NGUOICHOI_PHONGCHOI">
+    <Key>
+      <PropertyRef Name="MAPHONG" />
+      <PropertyRef Name="TAIKHOAN" />
+    </Key>
+    <Property Name="MAPHONG" Type="Int16" Nullable="false" />
+    <Property Name="TAIKHOAN" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="PHONGCHOI">
+    <Key>
+      <PropertyRef Name="MAPHONG" />
+    </Key>
+    <Property Name="MAPHONG" Type="Int16" Nullable="false" />
+    <Property Name="SODIA" Type="Int16" Nullable="false" />
+    <Property Name="TENPHONG" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="SOLUONG" Type="Int16" />
+    <Property Name="TINHTRANG" Type="String" MaxLength="30" Unicode="false" FixedLength="true" />
+    <Property Name="MATKHAU" Type="String" MaxLength="30" Unicode="false" FixedLength="true" />
+    <Property Name="NGUOITHANG" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="THANHTICH">
+    <Key>
+      <PropertyRef Name="TAIKHOAN" />
+      <PropertyRef Name="SODIA" />
+    </Key>
+    <Property Name="TAIKHOAN" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="true" />
+    <Property Name="SODIA" Type="Int16" Nullable="false" />
+    <Property Name="THOIGIAN" Type="Time" Precision="7" />
+    <Property Name="SOBUOCCHUYEN" Type="Decimal" Precision="5" Scale="0" />
+  </EntityType>
+</Schema>

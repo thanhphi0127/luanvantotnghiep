@@ -115,9 +115,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Service References\TowerHanoiService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Sounds.cs" />
     <Compile Include="Source\Choidon\PlayGame.xaml.cs">
       <DependentUpon>PlayGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Choidon\PlayGame_Hanoi4.xaml.cs">
+      <DependentUpon>PlayGame_Hanoi4.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\Choidon\Thanhtichcanhan.xaml.cs">
       <DependentUpon>Thanhtichcanhan.xaml</DependentUpon>
@@ -162,6 +170,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Source\Choidon\PlayGame_Hanoi4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Source\Choidon\Thanhtichcanhan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,7 +204,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="Service References\TowerHanoiService\Service.xsd" />
+    <None Include="Service References\TowerHanoiService\Service1.xsd" />
+    <None Include="Service References\TowerHanoiService\Thachdau.wsdl" />
+    <Content Include="Assets\Background\Coc_d.png" />
+    <Content Include="ServiceReferences.ClientConfig" />
+    <None Include="Source\Thachdau\app.config" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
@@ -272,7 +289,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icon title.png" />
-    <Content Include="README_FIRST.txt" />
+    <None Include="Service References\TowerHanoiService\Service.disco" />
+    <None Include="Service References\TowerHanoiService\configuration91.svcinfo" />
+    <None Include="Service References\TowerHanoiService\configuration.svcinfo" />
+    <None Include="Service References\TowerHanoiService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
@@ -310,7 +333,9 @@
       <Name>SQLite for Windows Phone</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\TowerHanoiService\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
