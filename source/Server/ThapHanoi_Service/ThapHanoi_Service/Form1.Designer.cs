@@ -47,9 +47,9 @@
             this.labelThongTin.AutoSize = true;
             this.labelThongTin.Location = new System.Drawing.Point(354, 125);
             this.labelThongTin.Name = "labelThongTin";
-            this.labelThongTin.Size = new System.Drawing.Size(35, 13);
+            this.labelThongTin.Size = new System.Drawing.Size(38, 13);
             this.labelThongTin.TabIndex = 1;
-            this.labelThongTin.Text = "label1";
+            this.labelThongTin.Text = "Server";
             // 
             // Form1
             // 

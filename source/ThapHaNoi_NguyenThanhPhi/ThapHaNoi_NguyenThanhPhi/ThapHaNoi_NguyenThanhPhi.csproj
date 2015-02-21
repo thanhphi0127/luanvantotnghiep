@@ -98,13 +98,9 @@
       <DependentUpon>DiskControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Function.cs" />
-    <Compile Include="GameState.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Moregame.xaml.cs">
-      <DependentUpon>Moregame.xaml</DependentUpon>
     </Compile>
     <Compile Include="Move.cs" />
     <Compile Include="MoveCalculation.cs" />
@@ -121,15 +117,26 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Sounds.cs" />
+    <Compile Include="Source\Choidon\ChooseGame.xaml.cs">
+      <DependentUpon>ChooseGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Choidon\Help.xaml.cs">
+      <DependentUpon>Help.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Choidon\PivotThanhTich.xaml.cs">
+      <DependentUpon>PivotThanhTich.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Source\Choidon\PlayGame.xaml.cs">
       <DependentUpon>PlayGame.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\Choidon\PlayGame_Hanoi4.xaml.cs">
       <DependentUpon>PlayGame_Hanoi4.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Source\Choidon\Thanhtichcanhan.xaml.cs">
-      <DependentUpon>Thanhtichcanhan.xaml</DependentUpon>
+    <Compile Include="Source\Choidon\ThanhTichCaNhanControl.xaml.cs">
+      <DependentUpon>ThanhTichCaNhanControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Source\Choidon\ThanhTichChoiDon.cs" />
+    <Compile Include="Source\Choidon\ThanhTichChoiDonDataContext.cs" />
     <Compile Include="Source\Huongdan.xaml.cs">
       <DependentUpon>Huongdan.xaml</DependentUpon>
     </Compile>
@@ -145,9 +152,6 @@
     <Compile Include="Source\Thachdau\Taophong.xaml.cs">
       <DependentUpon>Taophong.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ThapHaNoi.xaml.cs">
-      <DependentUpon>ThapHaNoi.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -162,7 +166,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Moregame.xaml">
+    <Page Include="Source\Choidon\ChooseGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Choidon\Help.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Choidon\PivotThanhTich.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,7 +186,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Source\Choidon\Thanhtichcanhan.xaml">
+    <Page Include="Source\Choidon\ThanhTichCaNhanControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -198,16 +210,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ThapHaNoi.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\TowerHanoiService\Service.xsd" />
     <None Include="Service References\TowerHanoiService\Service1.xsd" />
     <None Include="Service References\TowerHanoiService\Thachdau.wsdl" />
+    <Content Include="Assets\Background\background_win.jpg" />
+    <Content Include="Assets\Background\choosegame.jpg" />
+    <Content Include="Assets\Background\image007.png" />
+    <Content Include="Assets\Background\main.jpg" />
     <Content Include="Assets\Background\Coc_d.png" />
+    <Content Include="Assets\Icon\4coc.png" />
+    <Content Include="Assets\Icon\caidat.png" />
+    <Content Include="Assets\Icon\help.png" />
+    <Content Include="Assets\Icon\trangchu.png" />
+    <Content Include="Help-and-support-icon.png" />
+    <Content Include="icon title - large.png" />
+    <Content Include="icon title - small.png" />
     <Content Include="ServiceReferences.ClientConfig" />
     <None Include="Source\Thachdau\app.config" />
     <None Include="packages.config" />
@@ -236,11 +255,8 @@
     <Content Include="Assets\Background\Coc_c1.png" />
     <Content Include="Assets\Background\desert.png" />
     <Content Include="Assets\Background\2.jpg" />
-    <Content Include="Assets\Background\win.jpg" />
-    <Content Include="Assets\Background\start.png" />
     <Content Include="Assets\Background\mattroi.png" />
     <Content Include="Assets\Background\Hinhnen.jpg" />
-    <Content Include="Assets\Background\black.jpg" />
     <Content Include="Assets\Background\start_choidon.png" />
     <Content Include="Assets\Background\listphongchoi.jpg" />
     <Content Include="Assets\Background\list2.jpg" />
@@ -255,23 +271,18 @@
     <Content Include="Assets\Icon\icon-list.png" />
     <Content Include="Assets\Icon\add.png" />
     <Content Include="Assets\Icon\back-icon.png" />
-    <Content Include="Assets\Icon\Help.png" />
-    <Resource Include="Assets\Icon\icon_dangky.gif" />
     <Content Include="Assets\Icon\icon_huongdan.png" />
-    <Content Include="Assets\Icon\lock icon.png" />
     <Content Include="Assets\Icon\login.png" />
     <Content Include="Assets\Icon\register.png" />
     <Content Include="Assets\Icon\Thongtin.png" />
     <Content Include="Assets\Icon\top.png" />
     <Content Include="Assets\Icon\Volume-Normal.png" />
-    <Content Include="Assets\Logo\tieptuc.png" />
-    <Content Include="Assets\Logo\main.png" />
+    <Content Include="Assets\Logo\main_huongdan.png" />
     <Content Include="Assets\Logo\choidon.png" />
     <Content Include="Assets\Logo\huongdan.png" />
     <Content Include="Assets\Logo\thanhtich.png" />
     <Content Include="Assets\Logo\thachdautructuyen.png" />
-    <Content Include="Assets\Logo\towerofhanoi_xanh.png" />
-    <Content Include="Assets\Logo\towerofhanoi.png" />
+    <Content Include="Assets\Logo\main.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

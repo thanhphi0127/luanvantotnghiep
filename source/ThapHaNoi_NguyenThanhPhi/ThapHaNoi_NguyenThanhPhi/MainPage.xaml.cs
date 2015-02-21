@@ -16,10 +16,12 @@ namespace ThapHaNoi_NguyenThanhPhi
     {
         // Constructor
         Sounds sounds = new Sounds();
+        Function func = new Function();
         bool stateSound = false;
         public MainPage()
         {
             InitializeComponent();
+            func.CreateLocalDatabase();
             sounds.Play("main");
         }
 
@@ -33,7 +35,7 @@ namespace ThapHaNoi_NguyenThanhPhi
         {
             sounds.Play("click");
             sounds.Stop("main");
-            NavigationService.Navigate(new Uri("/Source/Choidon/PlayGame.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Source/Choidon/ChooseGame.xaml", UriKind.Relative));
         }
 
         /// <summary>
@@ -106,7 +108,16 @@ namespace ThapHaNoi_NguyenThanhPhi
         {
             sounds.Play("click");
             sounds.Stop("main");
-            NavigationService.Navigate(new Uri("/Source/Choidon/Thanhtichcanhan.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Source/Choidon/PivotThanhTich.xaml", UriKind.Relative));
+        }
+
+        private void BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            sounds.Play("click");
+            e.Cancel = true;
+            MessageBoxResult flag = MessageBox.Show("Bạn có muốn thoát không", "Thoát khỏi trò chơi", MessageBoxButton.OKCancel);
+            if (flag == MessageBoxResult.OK)
+                Application.Current.Terminate();
         }
 
     }

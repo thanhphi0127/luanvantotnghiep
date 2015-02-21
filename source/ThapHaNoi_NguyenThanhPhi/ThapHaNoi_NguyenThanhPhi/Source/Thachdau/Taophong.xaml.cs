@@ -12,16 +12,17 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Thachdau
 {
     public partial class Taophong : PhoneApplicationPage
     {
+        Sounds sounds = new Sounds();
         int[] comboNumDisk = { 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         public Taophong()
-        {
-            
+        {    
             InitializeComponent();
             this.lpkCountry.ItemsSource = comboNumDisk;
         }
 
         private void btnBack(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            sounds.Play("click");
             NavigationService.Navigate(new Uri("/Source/Thachdau/Danhsachphongchoi.xaml", UriKind.Relative));
         }
     }

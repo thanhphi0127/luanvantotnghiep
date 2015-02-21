@@ -12,7 +12,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}" Orientation="Landscape"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="False" SupportedOrientations="Landscape">
+    shell:SystemTray.IsVisible="False" BackKeyPress="BackKeyPress" SupportedOrientations="Landscape">
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -68,68 +68,79 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" MinHeight="591"/>
-
         </Grid.RowDefinitions>
-
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Background="Transparent" Margin="0,0,0,53">
-            <Image Source="/Assets/Background/desert.png" Margin="0,-2,0,2"></Image>
+            <Image Source="/Assets/Background/beach.jpg" Margin="0,-20,0,59"></Image>
+            <Grid x:Name="Rod">
+                <Canvas x:Name="CavasRodA" Margin="98,41,482,58" Tap="Tap_Canvas" ManipulationDelta="CavasRodA_ManipulationDelta">
+                    <Canvas.Background>
+                        <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/coc_a.png"/>
+                    </Canvas.Background>
+                </Canvas>
 
-            <Canvas x:Name="CavasRodA" Margin="98,45,482,54" Tap="Tap_Canvas" ManipulationDelta="CavasRodA_ManipulationDelta">
-                <Canvas.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/coc_a.png"/>
-                </Canvas.Background>
-            </Canvas>
+                <Canvas x:Name="CavasRodB" Tap="Tap_Canvas" Margin="325,44,255,55">
+                    <Canvas.Background>
+                        <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/coc_b.png"/>
+                    </Canvas.Background>
+                </Canvas>
 
-            <Canvas x:Name="CavasRodB" Tap="Tap_Canvas" Margin="325,45,255,54">
-                <Canvas.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/coc_b.png"/>
-                </Canvas.Background>
-            </Canvas>
-
-            <Canvas x:Name="CavasRodC" Tap="Tap_Canvas" Margin="554,45,33,54">
-                <Canvas.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/Coc_c.png"/>
-                </Canvas.Background>
-            </Canvas>
-            <Image Source="/Assets/Icon/left-arrow-icon.png" Tap="imgBack" HorizontalAlignment="Left" Height="58" Margin="10,421,0,0" VerticalAlignment="Top" Width="64"/>
+                <Canvas x:Name="CavasRodC" Tap="Tap_Canvas" Margin="554,41,33,58">
+                    <Canvas.Background>
+                        <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/Coc_c.png"/>
+                    </Canvas.Background>
+                </Canvas>
+                <Image Source="/Assets/Icon/left-arrow-icon.png" Tap="imgBack" HorizontalAlignment="Left" Height="58" Margin="10,421,0,0" VerticalAlignment="Top" Width="64"/>
+            </Grid>
         </Grid>
 
+        <Grid x:Name="Dieuhuong">
+            <TextBlock FontSize="24" TextWrapping="Wrap" Text="Thời gian:" Margin="546,12,135,547"/>
+            <TextBlock x:Name="txtThoigian" FontSize="24" TextWrapping="Wrap" Text="00:00:00" Margin="670,12,19,547"/>
+            <TextBlock FontSize="24" TextWrapping="Wrap" Text="Số lần chuyển: " Margin="341,10,254,530"/>
+            <TextBlock x:Name="txtSolan" FontSize="24" TextWrapping="Wrap" Text="0" Margin="505,12,250,545"/>
+            <Image Source="/Assets/Icon/Help.png" Tap="Tap_Trogiup" HorizontalAlignment="Left" Height="60" Margin="10,10,0,0" VerticalAlignment="Top" Width="60"/>
+            <TextBlock HorizontalAlignment="Left" Margin="63,19,0,0" TextWrapping="Wrap" Text="Trợ giúp" VerticalAlignment="Top"/>
 
-        <Button x:Name="btnTrogiup" Content="Trợ giúp" HorizontalAlignment="Left" Margin="99,3,0,0" VerticalAlignment="Top" Background="#FFF0004C" FontSize="14" Tap="Tap_Trogiup" Height="60" Width="114"/>
-
-        <Button Content="Luật chơi" Tap="Tap_LuatChoi" HorizontalAlignment="Left" Margin="-2,2,0,0" VerticalAlignment="Top" Background="#FF0913D8" FontSize="16" Height="63" Width="117"/>
-
-        <TextBlock FontSize="24" TextWrapping="Wrap" Text="Thời gian:" Margin="546,12,135,547"/>
-        <TextBlock x:Name="txtThoigian" FontSize="24" TextWrapping="Wrap" Text="00:00:00" Margin="670,12,19,547"/>
-
-        <TextBlock x:Name="txtSolan" FontSize="24" TextWrapping="Wrap" Text="Số lần chuyển: 0" Margin="341,10,254,530"/>
+        </Grid>
 
         <Canvas x:Name="canvasStart" Visibility="Visible" Margin="0,0,0,111">
-            <Image Source="/Assets/Background/start_choidon.png" Width="647" Height="429" Canvas.Left="99" Canvas.Top="49"></Image>
-            <TextBlock Canvas.Left="244" FontSize="23" Foreground="Red" TextWrapping="Wrap" Text="Số dĩa" Canvas.Top="292" Width="68"/>
+            <Image Source="/Assets/Background/start_choidon.png" Width="637" Height="438" Canvas.Left="107" Canvas.Top="19"></Image>
+            <TextBlock Canvas.Left="242" FontSize="23" Foreground="Red" TextWrapping="Wrap" Text="Số Đĩa" Canvas.Top="292" Width="70"/>
+            <TextBlock Canvas.Left="226" TextWrapping="Wrap" Text="CHỌN SỐ LƯỢNG ĐĨA" Canvas.Top="152" FontSize="40" FontWeight="Bold">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="#FFFB2B2B" Offset="0.766"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
 
             <Grid x:Name="ContentPanel1" Margin="154,457,10,256" RenderTransformOrigin="0.5,0.5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <toolkit:ListPicker FullModeItemTemplate="{Binding lpkFullItemTemplate}" Grid.Row="8" ItemTemplate="{Binding lpkItemTemplate}" x:Name="listNumDisk" Margin="163,-182,-305,131" RenderTransformOrigin="0.488,0.54"/>
+                <toolkit:ListPicker FullModeItemTemplate="{Binding lpkFullItemTemplate}" ItemTemplate="{Binding lpkItemTemplate}" x:Name="listNumDisk" Margin="158,-184,-308,120" RenderTransformOrigin="0.488,0.54"/>
             </Grid>
-            <Button x:Name="btnPlay" Content="Bắt đầu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Background="#FF09950F" Tap="btnPlay_Tap" FontSize="14" Height="72" Canvas.Left="532" Canvas.Top="272"/>
-            <Image Source="/Assets/Icon/start-icon.png" Height="59" Canvas.Left="489" Canvas.Top="282" Width="53"/>
+            <Button x:Name="btnPlay" Content="Bắt đầu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="182" Background="#FF09950F" Tap="btnPlay_Tap" FontSize="14" Height="82" Canvas.Left="531" Canvas.Top="267"/>
+            <Image Source="/Assets/Icon/start-icon.png" Height="74" Canvas.Left="477" Canvas.Top="272" Width="65"/>
         </Canvas>
 
         <Canvas x:Name="canvasWin" Visibility="Collapsed"  Margin="99,84,64,170">
             <Canvas.Background>
-                <ImageBrush ImageSource="/Assets/Background/win.jpg"></ImageBrush>
+                <ImageBrush ImageSource="/Assets/Background/background_win.jpg"></ImageBrush>
             </Canvas.Background>
-            <Image Source="/Assets/Logo/tieptuc.png" Tap="Tap_Tieptuc" Height="82" Canvas.Left="239" Canvas.Top="211" Width="186"/>
+            <Button x:Name="btnChoilai" Tap="btnChoiLai" Content="Chơi lại" Canvas.Left="358" Canvas.Top="233" RenderTransformOrigin="0.467,0.528" Height="82" Width="152" Background="#FF222325"/>
+            <Button x:Name="btnTieptuc" Tap="Tap_Tieptuc" Content="Tiếp tục" Canvas.Left="120" Canvas.Top="233" RenderTransformOrigin="0.467,0.528" Height="82" Width="152" Background="#FF2C2E2D"/>
+
+            <TextBlock FontSize="25" Canvas.Left="197" TextWrapping="Wrap" Foreground="Black" Text="Nhập tên người chơi" Canvas.Top="128" Height="33" Width="253"/>
+            <TextBox x:Name="txtNguoichoi" Height="72" Canvas.Left="180" TextWrapping="Wrap" Text="Người chơi" Canvas.Top="161" Width="315"/>
+            <TextBlock Canvas.Left="167" TextWrapping="Wrap" Text="CHIẾN THẮNG" Canvas.Top="43" Height="42" Width="343" Foreground="#FFD61A11" FontSize="48" FontWeight="Bold"/>
 
         </Canvas>
-        <TextBlock x:Name="txtSolve" HorizontalAlignment="Left" Margin="17,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <Button x:Name="txtChoi4Coc" Tap="btnChoi4Coc" FontSize="15" Background="Blue" Content="Chơi 4 cọc" HorizontalAlignment="Left" Margin="-5,54,0,0" VerticalAlignment="Top"/>
+
 
     </Grid>
 

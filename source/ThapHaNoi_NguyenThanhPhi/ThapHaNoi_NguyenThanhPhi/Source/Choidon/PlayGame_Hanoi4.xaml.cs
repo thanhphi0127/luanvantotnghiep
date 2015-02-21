@@ -17,8 +17,6 @@ using System.Data;
 using System.Text;
 using System.ComponentModel;
 using System.Reflection;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.GamerServices;
 using System.Windows.Threading;
@@ -40,10 +38,9 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         #region KHOI TAO CAC BIEN, THAM SO
         Sounds sounds = new Sounds();
         Function func = new Function();
-        GameState game = new GameState();
 
-        TimeSpan time;
-        private DispatcherTimer _timer;
+        TimeSpan time, effect;
+        private DispatcherTimer _timer, _effect;
         private TranslateTransform move = new TranslateTransform();
         private TransformGroup rectangleTransforms = new TransformGroup();
         Stack<DiskControl> firstClickedDisks, secondClickedDisks;
@@ -57,7 +54,6 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         //Cac bien kieu giao dien de luu tru trang thai chuyen du lieu
         Canvas from, to;
         DiskControl diskTab, temp;
-
         #endregion
 
         public PlayGame_Hanoi4()
@@ -80,8 +76,18 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             _timer.Tick += new EventHandler(TimerTick);
             _timer.Interval = new TimeSpan(0, 0, 0, 1);
 
+            _effect = new DispatcherTimer();
+            _effect.Tick += new EventHandler(EffectTick);
+            _effect.Interval = new TimeSpan(0, 0, 0, 0, 200);
         }
 
+
+        void EffectTick(object sender, EventArgs e)
+        {
+            //Hieu ung mau trong button
+            Random rd1 = new Random();
+            btnTieptuc.BorderBrush = new SolidColorBrush(Color.FromArgb(255, (byte)rd1.Next(256), (byte)rd1.Next(256), (byte)rd1.Next(256)));
+        }
 
         /// <summary>
         /// HAM KHOI TAO LAI TRANG THAI GAME VOI SO LUONG DIA = SO LUONG DIA + 1
@@ -93,12 +99,6 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         ///       3.Dat lai thoi gian</work>
         private void RestartGame(int numDiskContinue)
         {
-            //Khoi tao bo dem thoi gian DispatcherTimer
-            _timer = new DispatcherTimer();
-            _timer.Tick += new EventHandler(TimerTick);
-            _timer.Interval = new TimeSpan(0, 0, 0, 1);
-            _timer.Start();
-
             //Xoa cac dia dang hien thi tren Canvas va luu tru trong stack
             _pole[0].stack.Clear(); _pole[1].stack.Clear(); _pole[2].stack.Clear(); _pole[3].stack.Clear();
             CavasRodA.Children.Clear();
@@ -113,12 +113,16 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             moveCount = 0;
 
             //Them dia vao coc A 
-            _pole[0].Init(numDiskContinue, CavasRodA, true);
+            _pole[0].Init(numDiskContinue, CavasRodA);
             
 
             //Visibility cac canvas bat dau choi va chien thang
             canvasStart.Visibility = Visibility.Collapsed;
             canvasWin.Visibility = Visibility.Collapsed;
+
+            //Hieu thi thanh dieu thuong vao cac coc a, b, c, d.
+            Rod.Visibility = Visibility.Visible;
+            Manulation.Visibility = Visibility.Visible;
         }
 
 
@@ -239,14 +243,12 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         ///       3.Dat lai thoi gian</work>
         private void ProcessMovingDisk(Canvas diskRod)
         {
-
-
             if (secondClickedDisks.Count == 0)
             {
                 sounds.Play("click");
                 MoveDisk(from, to);
                 moveCount++;
-                txtSolan.Text = "Số lần chuyển: " + moveCount;
+                txtSolan.Text = moveCount.ToString();
             }
             else
             {
@@ -257,7 +259,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
                     sounds.Play("click");
                     MoveDisk(from, to);
                     moveCount++;
-                    txtSolan.Text = "Số lần chuyển: " + moveCount;
+                    txtSolan.Text = moveCount.ToString();
                 }
                 else
                 {
@@ -358,7 +360,6 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         }
 
 
-
         /// <summary>
         /// SU KIEN NHAN VAO "PLAY"
         /// </summary>
@@ -367,9 +368,10 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         private void btnPlay_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
-            //sounds.Play("select");
 
             _timer.Start();
+            _effect.Start();
+
             numDisk = int.Parse(listNumDisk.SelectedItem.ToString());
             RestartGame(numDisk);
 
@@ -409,7 +411,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         private void imgBack(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
-            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Source/Choidon/ChooseGame.xaml", UriKind.Relative));
         }
 
         /// <summary>
@@ -420,6 +422,8 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         private void Tap_Tieptuc(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
+            //Lưu thông tin điểm số người chơi.
+            func.UpdateTable(txtNguoichoi, txtThoigian, txtSolan, numDisk, 4);
             //Tang so luong dia hien tai len 1 don vi
             numDisk = numDisk + 1;
             RestartGame(numDisk);
@@ -438,164 +442,28 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
 
         private void Tap_Trogiup(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            //btnTrogiup.Visibility = Visibility.Collapsed;
-            sounds.Play("click");
-
-            RestartGame(numDisk);
-            SolveGame();
+            if (canvasStart.Visibility == Visibility.Collapsed)
+            {
+                sounds.Play("click");
+                NavigationService.Navigate(new Uri(string.Format("/Source/Choidon/Help.xaml?Id={0}", "&numDisk=" + numDisk + "&numRod=4") , UriKind.Relative));
+            }
         }
 
-
-
-        public void SolveGame()
+    
+        private void btnChoiLai(object sender, System.Windows.Input.GestureEventArgs e)
         {
             _timer.Start();
-            List<Move> moves = MoveCalculation.SolveHanoi4(numDisk);
+            canvasWin.Visibility = Visibility.Collapsed;
 
+            //Lưu thông tin điểm số người chơi.
+            func.UpdateTable(txtNguoichoi, txtThoigian, txtSolan, numDisk, 4);
 
-            ///////////////////////////////////////
-            //////////////////////////////////////
-            
-            foreach (Move move in moves)
-            {
-                txtSolve.Text += move.ToString();
-                _pole[move.From].SetTopDiskFromPole();
-                MakeMove(move);
-            }
-           
-/*
-            for (int i = 0; i < moves.Count; i++)
-            {
-                //ProcessDataAsync(moves[i]);
-
-                //ProcessDataAsync_Move(moves[i]);
-            }
-
- */
-            //MessageBox.Show(_pole[2].stack.Count.ToString(), "Numdisk in function Solve", MessageBoxButton.OK);
-
-            if (_pole[3].stack.Count == numDisk)
-            {
-                _timer.Stop();
-                MessageBox.Show(moves.Count.ToString(), "Con...", MessageBoxButton.OK);
-                //canvasWin.Visibility = Visibility.Visible;
-            }
+            RestartGame(numDisk);
         }
 
-
-        public void MakeMove(Move move)
+        private void BackKeyPress(object sender, CancelEventArgs e)
         {
-            switch (move.From)
-            {
-                case 0:
-                    temp = _pole[move.From].RemoveDiskFromPole(CavasRodA);
-                    break;
-                case 1:
-                    temp = _pole[move.From].RemoveDiskFromPole(CavasRodB);
-                    break;
-                case 2:
-                    temp = _pole[move.From].RemoveDiskFromPole(CavasRodC);
-                    break;
-                case 3:
-                    temp = _pole[move.From].RemoveDiskFromPole(CavasRodD);
-                    break;
-                default:
-                    break;
-            }
-
-            if (temp == null) return;
-            switch (move.To)
-            {
-                case 0:
-                    _pole[move.To].AddDiskIntoPole(CavasRodA, temp);
-                    break;
-                case 1:
-                    _pole[move.To].AddDiskIntoPole(CavasRodB, temp);
-                    break;
-                case 2:
-                    _pole[move.To].AddDiskIntoPole(CavasRodC, temp);
-                    break;
-                case 3:
-                    _pole[move.To].AddDiskIntoPole(CavasRodD, temp);
-                    break;
-
-                default:
-                    break;
-            }
-            //Update_UI();
-            //MessageBox.Show(_pole[2].stack.Count.ToString(), "Numdisk in Make move", MessageBoxButton.OK);
-        }
-
-
-
-        private void ProcessDataAsync(Move move)
-        {
-            // Background worker
-            var myWorker = new BackgroundWorker
-            {
-                WorkerReportsProgress = true,
-            };
-
-            // Do Work
-            myWorker.DoWork += delegate(object sender, DoWorkEventArgs e)
-            {
-                // Update progress (50 is just an example percent value out of 100)
-                Thread.Sleep(800);
-                myWorker.ReportProgress(800);
-            };
-
-
-            // Work has been completed
-            myWorker.RunWorkerCompleted += delegate(object sender, RunWorkerCompletedEventArgs e)
-            {
-                Update_UI();
-                // Work completed, you are back in the UI thread.
-                txtSolve.Text += move.ToString();
-                _pole[move.From].SetTopDiskFromPole();
-            };
-
-            // Run Worker
-            myWorker.RunWorkerAsync();
-        }
-
-
-        private void ProcessDataAsync_Move(Move move)
-        {
-            // Background worker
-            var myWorker = new BackgroundWorker
-            {
-                WorkerReportsProgress = true,
-            };
-
-            // Do Work
-            myWorker.DoWork += delegate(object sender, DoWorkEventArgs e)
-            {
-                // Update progress (50 is just an example percent value out of 100)
-                Thread.Sleep(1000);
-                myWorker.ReportProgress(1000);
-            };
-
-
-            // Work has been completed
-            myWorker.RunWorkerCompleted += delegate(object sender, RunWorkerCompletedEventArgs e)
-            {
-                Update_UI();
-                // Work completed, you are back in the UI thread.
-                txtSolve.Text += move.ToString();
-                MakeMove(move);
-            };
-
-            // Run Worker
-            myWorker.RunWorkerAsync();
-        }
-
-
-        private void Update_UI()
-        {
-            CavasRodA.UpdateLayout();
-            CavasRodB.UpdateLayout();
-            CavasRodC.UpdateLayout();
-            LayoutRoot.UpdateLayout();
+            NavigationService.Navigate(new Uri("/Source/Choidon/ChooseGame.xaml", UriKind.Relative));
         }
     }
 }

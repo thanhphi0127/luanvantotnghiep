@@ -12,6 +12,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Thachdau
 {
     public partial class Danhsachphongchoi : PhoneApplicationPage
     {
+        Sounds sounds = new Sounds();
         public Danhsachphongchoi()
         {
             InitializeComponent();
@@ -19,6 +20,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Thachdau
 
         private void img_Taophong(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            sounds.Play("click");
             NavigationService.Navigate(new Uri("/Source/Thachdau/Taophong.xaml", UriKind.Relative));
         }
     }

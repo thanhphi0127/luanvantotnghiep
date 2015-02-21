@@ -7,6 +7,8 @@ using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Threading;
 using System.Windows.Media.Imaging;
+using System.ComponentModel;
+using System.Threading;
 
 namespace ThapHaNoi_NguyenThanhPhi
 {
@@ -15,22 +17,22 @@ namespace ThapHaNoi_NguyenThanhPhi
         static int moveCounter = 0;
 
         static int[] arrayPascal = {0, 0, 1, 3, 6, 10, 15, 21};
-
+        static public int miliseconds;
         public static List<Move> moves { get; set; }
 
-        public static List<Move> SolveHanoi3(int numDisk)
+        public static List<Move> SolveHanoi3(int numDisk, BackgroundWorker worker)
         {
             moveCounter = 0;
             moves = new List<Move>();
-            Hanoi3(numDisk, 0, 2, 1);
+            Hanoi3(numDisk, "A", "C", "B", worker);
             return moves;
         }
 
-        public static List<Move> SolveHanoi4(int numDisk)
+        public static List<Move> SolveHanoi4(int numDisk, BackgroundWorker worker)
         {
             moveCounter = 0;
             moves = new List<Move>();
-            Hanoi4(numDisk, 4, 0, 3, 1, 2);
+            Hanoi4(numDisk, 4, "A", "D", "B", "C", worker);
             return moves;
         }
 
@@ -45,18 +47,25 @@ namespace ThapHaNoi_NguyenThanhPhi
         /// <param>Tham so n la so luong dia</param>
         /// <purpose>
         /// </purpose>
-        public static void Hanoi3(int n, int RodA, int RodC, int RodB)
+
+        public static void Hanoi3(int n, string RodA, string RodC, string RodB, BackgroundWorker worker)
         {
             if (n == 1)
             {
                 moves.Add(new Move(RodA, RodC));
-                moveCounter++;
+                worker.ReportProgress(0, string.Format("{0}/{1}", RodA, RodC));
+                Thread.Sleep(miliseconds);
                 return;
             }
-            Hanoi3(n - 1, RodA, RodB, RodC);
-            Hanoi3(1, RodA, RodC, RodB);
-            Hanoi3(n - 1, RodB, RodC, RodA);
+            Hanoi3(n - 1, RodA, RodB, RodC, worker);
+
+            moves.Add(new Move(RodA, RodC));
+            worker.ReportProgress(0, string.Format("{0}/{1}", RodA, RodC));
+            Thread.Sleep(miliseconds);
+
+            Hanoi3(n - 1, RodB, RodC, RodA, worker);
         }
+
 
         /// <summary>
         /// HAM LOI GIAI BAI TOAN 4 COC
@@ -64,11 +73,13 @@ namespace ThapHaNoi_NguyenThanhPhi
         /// <param>Tham so n la so luong dia</param>
         /// <purpose>
         /// </purpose>
-        public static void Hanoi4(int n, int socot, int cotnguon, int cotdich, int trunggian1, int trunggian2)
+        public static void Hanoi4(int n, int socot, string cotnguon, string cotdich, string trunggian1, string trunggian2, BackgroundWorker worker)
         {
             if (n == 1)
             {
                 moves.Add(new Move(cotnguon, cotdich));
+                worker.ReportProgress(0, string.Format("{0}/{1}", cotnguon, cotdich));
+                Thread.Sleep(miliseconds);
                 return;
             }
 
@@ -77,6 +88,12 @@ namespace ThapHaNoi_NguyenThanhPhi
                 moves.Add(new Move(cotnguon, trunggian1));
                 moves.Add(new Move(cotnguon, cotdich));
                 moves.Add(new Move(trunggian1, cotdich));
+                worker.ReportProgress(0, string.Format("{0}/{1}", cotnguon, trunggian1));
+                Thread.Sleep(miliseconds);
+                worker.ReportProgress(0, string.Format("{0}/{1}", cotnguon, cotdich));
+                Thread.Sleep(miliseconds);
+                worker.ReportProgress(0, string.Format("{0}/{1}", trunggian1, cotdich));
+                Thread.Sleep(miliseconds);
                 return;
             }
 
@@ -85,9 +102,9 @@ namespace ThapHaNoi_NguyenThanhPhi
             int l = sochia(n);
 
             //Buoc 2: Chuyen l dia nho tre cung sang coc trunggian 1, su dung 4 coc
-            Hanoi4(l, 4, cotnguon, trunggian1, trunggian2, cotdich);
-            Hanoi3(n - l, cotnguon, cotdich, trunggian2);
-            Hanoi4(l, 4, trunggian1, cotdich, trunggian2, cotnguon);
+            Hanoi4(l, 4, cotnguon, trunggian1, trunggian2, cotdich, worker);
+            Hanoi3(n - l, cotnguon, cotdich, trunggian2, worker);
+            Hanoi4(l, 4, trunggian1, cotdich, trunggian2, cotnguon, worker);
 
         }
 
@@ -158,6 +175,22 @@ namespace ThapHaNoi_NguyenThanhPhi
                 return;
             }
          */
+
+        /*
+         * 
+         *         public static void Hanoi3(int n, int RodA, int RodC, int RodB)
+        {
+            if (n == 1)
+            {
+                moves.Add(new Move(RodA, RodC));
+                moveCounter++;
+                return;
+            }
+            Hanoi3(n - 1, RodA, RodB, RodC);
+            Hanoi3(1, RodA, RodC, RodB);
+            Hanoi3(n - 1, RodB, RodC, RodA);
+        }
+         * */
 
     }
 }
