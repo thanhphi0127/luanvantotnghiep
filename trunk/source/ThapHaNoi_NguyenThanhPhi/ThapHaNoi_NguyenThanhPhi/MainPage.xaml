@@ -1,6 +1,7 @@
 ﻿<phone:PhoneApplicationPage
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,10 +12,44 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
+    SupportedOrientations="Portrait" Orientation="Portrait" BackKeyPress="BackKeyPress"
     shell:SystemTray.IsVisible="False">
- 
     
+    <phone:PhoneApplicationPage.Resources>
+        <Storyboard x:Name="StoryboardChoose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="imgTower">
+            <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+            <SplineDoubleKeyFrame KeyTime="0:2:0" Value="0"/>
+        </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="imgTower">
+            <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+            <SplineDoubleKeyFrame KeyTime="0:2:0" Value="12000"/>
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+    </phone:PhoneApplicationPage.Resources>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Margin="-18,0,0,0">
         
@@ -23,9 +58,9 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         
-        <Border BorderBrush="Black" HorizontalAlignment="Left" Height="800" VerticalAlignment="Top" Width="488" Grid.RowSpan="2" Margin="10,0,0,0">
+        <Border BorderBrush="Black" HorizontalAlignment="Left" Height="800" VerticalAlignment="Top" Width="488" Grid.RowSpan="2" Margin="14,0,-4,0">
             <Border.Background>
-                <ImageBrush Stretch="Fill" ImageSource="Assets/Background/2.jpg"/>
+                <ImageBrush Stretch="Fill" ImageSource="Assets/Background/main.jpg"/>
             </Border.Background>
         </Border>
         
@@ -44,20 +79,22 @@
         
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="82" Margin="88,190,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="400"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="82" Margin="122,322,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="366"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="82" Margin="88,566,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="400"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="82" Margin="112,457,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="376"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="82" Margin="92,562,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="400"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="82" Margin="112,443,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="376"/>
 
         
-        <Image Source="/Assets/Icon/Thongtin.png" HorizontalAlignment="Left" Height="82" Margin="34,566,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95" Tap="imgGioithieu"/>
+        <Image Source="/Assets/Icon/Thongtin.png" HorizontalAlignment="Left" Height="82" Margin="34,560,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95" Tap="imgGioithieu"/>
         <Image Source="/Assets/Icon/thachdau.png" HorizontalAlignment="Left" Height="82" Margin="28,190,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95"/>
         <Image Source="/Assets/Icon/choidon.ico" HorizontalAlignment="Left" Height="83" Margin="74,321,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95"/>
-        <Image Source="/Assets/Icon/top.png"  HorizontalAlignment="Left" Height="96" Margin="88,443,0,0" Grid.Row="1" VerticalAlignment="Top" Width="81"/>
-        <Image Source="/Assets/Logo/main.png" HorizontalAlignment="Left" Height="174" Margin="45,0,0,0" VerticalAlignment="Top" Width="413" Grid.Row="1"/>
+        <Image Source="/Assets/Icon/top.png"  HorizontalAlignment="Left" Height="96" Margin="74,429,0,0" Grid.Row="1" VerticalAlignment="Top" Width="81"/>
+        <Image x:Name="imgTower" Source="/Assets/Logo/main.png" HorizontalAlignment="Left" Height="174" Margin="53,72,0,0" VerticalAlignment="Top" Width="413" Grid.RowSpan="2"/>
         <Image Source="/Assets/Logo/thachdautructuyen.png" HorizontalAlignment="Left" Tap="Tap_Online" Height="51" Margin="112,211,0,0" Grid.Row="1" VerticalAlignment="Top" Width="376"/>
-        <Image Source="/Assets/Logo/choidon.png" Tap="btn_Start_Tap"  HorizontalAlignment="Left" Height="54" Margin="169,329,0,0" Grid.Row="1" VerticalAlignment="Top" Width="250"/>
-        <Image Source="/Assets/Logo/thanhtich.png" Tap="btnThanhtich" HorizontalAlignment="Left" Height="76" Margin="174,463,0,0" Grid.Row="1" VerticalAlignment="Top" Width="245"/>
-        <Image Source="/Assets/Logo/huongdan.png" Tap="imgGioithieu" HorizontalAlignment="Left" Height="64" Margin="128,576,0,0" Grid.Row="1" VerticalAlignment="Top" Width="231"/>
-        
+        <Image Source="/Assets/Logo/choidon.png" Tap="btn_Start_Tap"  HorizontalAlignment="Left" Height="49" Margin="157,336,0,0" Grid.Row="1" VerticalAlignment="Top" Width="335"/>
+        <Image Source="/Assets/Logo/thanhtich.png" Tap="btnThanhtich" HorizontalAlignment="Left" Height="60" Margin="165,455,0,0" Grid.Row="1" VerticalAlignment="Top" Width="300"/>
+        <Image Source="/Assets/Logo/huongdan.png" Tap="imgGioithieu" HorizontalAlignment="Left" Height="55" Margin="128,570,0,0" Grid.Row="1" VerticalAlignment="Top" Width="337"/>
+        <Image Source="/Assets/Icon/caidat.png" HorizontalAlignment="Left" Height="54" Margin="430,672,0,0" Grid.Row="1" VerticalAlignment="Top" Width="58"/>
+        <TextBlock HorizontalAlignment="Left" Margin="364,686,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Cài đặt" VerticalAlignment="Top"/>
+
 
 
 

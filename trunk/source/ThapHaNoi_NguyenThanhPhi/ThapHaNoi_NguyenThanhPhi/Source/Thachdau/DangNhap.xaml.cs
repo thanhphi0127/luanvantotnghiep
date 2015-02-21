@@ -13,6 +13,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Thachdau
 {
     public partial class DangNhap : PhoneApplicationPage
     {
+        Sounds sounds = new Sounds();
         ServiceClient proxy = new ServiceClient();
         public DangNhap()
         {
@@ -21,6 +22,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Thachdau
 
         private void imgDangki(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            sounds.Play("click");
             NavigationService.Navigate(new Uri("/Source/Thachdau/Dangki.xaml", UriKind.Relative)); 
         }
 
@@ -67,6 +69,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Thachdau
 
         private void btnBack(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            sounds.Play("click");
             //NavigationService.Navigate(new Uri("/Source/Thachdau/Danhsachphongchoi.xaml", UriKind.Relative));
         }
     }

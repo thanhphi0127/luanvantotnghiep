@@ -13,6 +13,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Thachdau
 {
     public partial class Dangki : PhoneApplicationPage
     {
+        Sounds sounds = new Sounds();
         public Dangki()
         {
             InitializeComponent();
@@ -20,6 +21,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Thachdau
 
         private void btnBack(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            sounds.Play("click");
             NavigationService.Navigate(new Uri("/Source/Thachdau/DangNhap.xaml", UriKind.Relative));
         }
     }
