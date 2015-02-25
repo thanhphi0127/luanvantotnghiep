@@ -27,7 +27,6 @@ namespace ThapHaNoi_NguyenThanhPhi
             NumberDisk.Text = Number.ToString();
         }
 
-        
 
         public DiskControl(int num)
         {

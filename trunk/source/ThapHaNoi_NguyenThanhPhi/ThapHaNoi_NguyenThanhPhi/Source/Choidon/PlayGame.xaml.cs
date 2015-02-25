@@ -85,8 +85,8 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             _timer.Interval = new TimeSpan(0, 0, 0, 1);
 
             //Visibility
-            Rod.Visibility = Visibility.Collapsed;
-            Dieuhuong.Visibility = Visibility.Collapsed;
+            //Rod.Visibility = Visibility.Collapsed;
+            //Dieuhuong.Visibility = Visibility.Collapsed;
 
         }
 
@@ -183,14 +183,14 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
                     switch (diskRod.Name)
                     {
                         case "CavasRodA":
-                            Canvas.SetTop(diskTab, (Contants.TopDisk - (_pole[0].stack.Count - 1) * Contants.SpaceDisk));
+                            Canvas.SetTop(diskTab, (Contants.TopDisk - (_pole[0].stack.Count - 1) * Contants.HEIGHTDISC));
                             break;
                         case "CavasRodB":
-                            Canvas.SetTop(diskTab, (Contants.TopDisk - (_pole[1].stack.Count - 1) * Contants.SpaceDisk));
+                            Canvas.SetTop(diskTab, (Contants.TopDisk - (_pole[1].stack.Count - 1) * Contants.HEIGHTDISC));
                             break;
 
                         case "CavasRodC":
-                            Canvas.SetTop(diskTab, (Contants.TopDisk - (_pole[2].stack.Count - 1) * Contants.SpaceDisk));
+                            Canvas.SetTop(diskTab, (Contants.TopDisk - (_pole[2].stack.Count - 1) * Contants.HEIGHTDISC));
                             break;
 
                         default:

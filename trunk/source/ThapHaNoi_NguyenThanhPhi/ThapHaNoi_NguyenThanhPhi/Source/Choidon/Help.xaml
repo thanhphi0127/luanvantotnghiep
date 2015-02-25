@@ -56,25 +56,25 @@
         <Grid x:Name="ContentPanel" Background="Transparent" Margin="0,0,0,53">
             <Image Source="/Assets/Background/image007.png" Margin="0,-2,0,-56"></Image>
 
-            <Canvas x:Name="CavasRodA" Margin="-18,38,598,61">
+            <Canvas x:Name="CavasRodA" Margin="-18,40,598,61">
                 <Canvas.Background>
                     <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/coc_a.png"/>
                 </Canvas.Background>
             </Canvas>
 
-            <Canvas x:Name="CavasRodB"  Margin="126,36,454,60">
+            <Canvas x:Name="CavasRodB"  Margin="128,39,452,60">
                 <Canvas.Background>
                     <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/coc_b.png"/>
                 </Canvas.Background>
             </Canvas>
 
-            <Canvas x:Name="CavasRodC" Margin="269,35,311,61">
+            <Canvas x:Name="CavasRodC" Margin="270,40,310,60">
                 <Canvas.Background>
                     <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/Coc_c.png"/>
                 </Canvas.Background>
             </Canvas>
 
-            <Canvas x:Name="CavasRodD" Margin="411,38,169,60">
+            <Canvas x:Name="CavasRodD" Margin="411,40,169,60">
                 <Canvas.Background>
                     <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/Coc_d.png"/>
                 </Canvas.Background>
@@ -82,20 +82,20 @@
             </Grid>
 
         <Border BorderBrush="Black" Background="BlueViolet" BorderThickness="1" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="800"/>
-        <Button x:Name="btnBegin" Tap="Tap_Begin" Content="Bắt đầu" HorizontalAlignment="Left" VerticalAlignment="Top" Height="67" Margin="-4,-3,0,0" Width="128"/>
+        <Button x:Name="btnBegin" Tap="Tap_Begin" Content="Bắt đầu" HorizontalAlignment="Left" VerticalAlignment="Top" Height="71" Margin="-4,-5,0,0" Width="133"/>
         <TextBlock FontSize="24" TextWrapping="Wrap" Text="Số lần chuyển: " Margin="591,10,44,530"/>
         <TextBlock x:Name="txtSolan" FontSize="24" TextWrapping="Wrap" Text="0" Margin="751,10,0,543"/>
 
         <TextBlock x:Name="txtSolve" HorizontalAlignment="Left" Margin="17,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
 
-        <ScrollViewer x:Name="listHelp" HorizontalAlignment="Left" Height="416" Margin="591,66,0,0" VerticalAlignment="Top" Width="201">
+        <ScrollViewer x:Name="listHelp" HorizontalAlignment="Left" Height="416" Margin="597,66,0,0" VerticalAlignment="Top" Width="201">
             <TextBlock x:Name="txtStep" Foreground="DarkBlue"/>
         </ScrollViewer>
-        <Slider x:Name="sliderSpeed" Minimum="500" Maximum="3000" SmallChange="100" Value="100" ValueChanged="slider_ValueChanged" HorizontalAlignment="Left" Margin="119,10,0,0" VerticalAlignment="Top" Width="341" Height="96"/>
+        <Slider x:Name="sliderSpeed" Minimum="400" Maximum="3000" SmallChange="100" Value="100" ValueChanged="slider_ValueChanged" HorizontalAlignment="Left" Margin="119,10,0,0" VerticalAlignment="Top" Width="341" Height="96"/>
 
         <TextBlock x:Name="txtSpeed" Text="Tốc độ: 0 mili giây" HorizontalAlignment="Left" Margin="129,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="311"/>
         
-        <toolkit:ListPicker FullModeItemTemplate="{Binding lpkFullItemTemplate}" ItemTemplate="{Binding lpkItemTemplate}" x:Name="listNumDisk" Margin="488,-4,220,533" RenderTransformOrigin="0.488,0.54" SelectionChanged="listNumDisk_SelectionChanged"/>
+        <toolkit:ListPicker FullModeItemTemplate="{Binding lpkFullItemTemplate}" ItemTemplate="{Binding lpkItemTemplate}" x:Name="listNumDisk" Margin="488,-4,220,533" RenderTransformOrigin="0.488,0.54" SizeChanged="listNumDisk_SizeChanged"/>
         <TextBlock HorizontalAlignment="Left" Margin="454,20,0,0" TextWrapping="Wrap" Text="Đĩa" VerticalAlignment="Top"/>
 
     </Grid>

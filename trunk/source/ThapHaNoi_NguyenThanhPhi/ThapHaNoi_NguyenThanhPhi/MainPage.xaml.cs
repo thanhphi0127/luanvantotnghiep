@@ -120,5 +120,10 @@ namespace ThapHaNoi_NguyenThanhPhi
                 Application.Current.Terminate();
         }
 
+        private void LoadEvent(object sender, RoutedEventArgs e)
+        {
+            //StoryboardChoose.Begin();
+        }
+
     }
 }

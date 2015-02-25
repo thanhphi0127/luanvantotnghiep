@@ -12,28 +12,28 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Landscape" Orientation="Landscape" BackKeyPress="BackKeyPress"
-    mc:Ignorable="d"
+    mc:Ignorable="d" Loaded="LoadEvent"
     shell:SystemTray.IsVisible="False">
 
     <phone:PhoneApplicationPage.Resources>
         <Storyboard x:Name="StoryboardChoose">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="img4Coc">
                 <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:2:0" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="0:1:0" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
 
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="img3Coc">
                 <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:2:0" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="0:1:0" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
 
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="img4Coc">
                 <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:2:0" Value="12000"/>
+                <SplineDoubleKeyFrame KeyTime="0:1:0" Value="12000"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="img3Coc">
                 <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:2:0" Value="12000"/>
+                <SplineDoubleKeyFrame KeyTime="0:1:0" Value="12000"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </phone:PhoneApplicationPage.Resources>

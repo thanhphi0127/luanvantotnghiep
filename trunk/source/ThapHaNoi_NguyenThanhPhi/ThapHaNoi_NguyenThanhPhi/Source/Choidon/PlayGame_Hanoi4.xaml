@@ -73,26 +73,26 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Background="Transparent" Margin="0,0,0,53">
             <Image Source="/Assets/Background/desert.png" Margin="0,-2,0,2"></Image>
-            <Grid x:Name="Rod" Visibility="Collapsed">
-                <Canvas x:Name="CavasRodD" Tap="Tap_Canvas"  Margin="587,41,0,58">
+            <Grid x:Name="Rod">
+                <Canvas x:Name="CavasRodD" Tap="Tap_Canvas" Margin="594,43,-14,56">
                     <Canvas.Background>
                         <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/Coc_d.png"/>
                     </Canvas.Background>
                 </Canvas>
 
-                <Canvas x:Name="CavasRodC" Tap="Tap_Canvas" Margin="415,41,172,58">
+                <Canvas x:Name="CavasRodC" Tap="Tap_Canvas" Margin="408,43,169,56">
                     <Canvas.Background>
                         <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/Coc_c.png"/>
                     </Canvas.Background>
                 </Canvas>
 
-                <Canvas x:Name="CavasRodB" Tap="Tap_Canvas" Margin="229,42,358,57">
+                <Canvas x:Name="CavasRodB" Tap="Tap_Canvas" Margin="222,43,358,56">
                     <Canvas.Background>
                         <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/coc_b.png"/>
                     </Canvas.Background>
                 </Canvas>
 
-                <Canvas x:Name="CavasRodA" Margin="64,42,523,57" Tap="Tap_Canvas" ManipulationDelta="CavasRodA_ManipulationDelta">
+                <Canvas x:Name="CavasRodA" Margin="39,41,541,58" Tap="Tap_Canvas" ManipulationDelta="CavasRodA_ManipulationDelta">
                     <Canvas.Background>
                         <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/coc_a.png"/>
                     </Canvas.Background>
@@ -100,7 +100,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="Manulation" Visibility="Collapsed">
+        <Grid x:Name="Manulation">
             <Image Source="/Assets/Icon/Help.png" Tap="Tap_Trogiup" HorizontalAlignment="Left" Height="60" Margin="10,10,0,0" VerticalAlignment="Top" Width="60"/>
             <TextBlock HorizontalAlignment="Left" Margin="63,19,0,0" TextWrapping="Wrap" Text="Trợ giúp" VerticalAlignment="Top"/>
             <TextBlock FontSize="24" TextWrapping="Wrap" Text="Thời gian:" Margin="546,12,135,547"/>

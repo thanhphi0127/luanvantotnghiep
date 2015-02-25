@@ -12,7 +12,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait" BackKeyPress="BackKeyPress"
+    SupportedOrientations="Portrait" Orientation="Portrait" BackKeyPress="BackKeyPress" Loaded="LoadEvent"
     shell:SystemTray.IsVisible="False">
     
     <phone:PhoneApplicationPage.Resources>

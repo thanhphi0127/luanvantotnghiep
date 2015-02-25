@@ -41,9 +41,9 @@ namespace ThapHaNoi_NguyenThanhPhi
             wrong = soundEffect.CreateInstance();
             wrong.Volume = (float)0.9;
 
-            //soundEffect = SoundEffect.FromStream(TitleContainer.OpenStream("./Assets/Audio/luachon.mp3"));
-            //// = soundEffect.CreateInstance();
-            //select.Volume = (float)0.9;
+            soundEffect = SoundEffect.FromStream(TitleContainer.OpenStream("./Assets/Audio/bangxephang.wav"));
+            bangxephang = soundEffect.CreateInstance();
+            bangxephang.Volume = (float)0.9;
             
         }
 
@@ -70,7 +70,9 @@ namespace ThapHaNoi_NguyenThanhPhi
                     break;
                 case "select": select.Play();
                     break;
-
+                case "bangxephang":
+                    bangxephang.Play();
+                    break;
                 default:
                     break;
             }
@@ -104,6 +106,9 @@ namespace ThapHaNoi_NguyenThanhPhi
                     break;
 
                 case "win": win.Stop();
+                    break;
+
+                case "bangxephang": bangxephang.Stop();
                     break;
                 default:
                     break;

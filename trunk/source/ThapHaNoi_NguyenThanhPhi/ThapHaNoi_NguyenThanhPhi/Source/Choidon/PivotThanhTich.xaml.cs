@@ -22,6 +22,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         {
             LoadThanhTichCaNhan(3);
             LoadThanhTichCaNhan(4);
+            sounds.Play("bangxephang");
         }
 
         void LoadThanhTichCaNhan(int sococ)
