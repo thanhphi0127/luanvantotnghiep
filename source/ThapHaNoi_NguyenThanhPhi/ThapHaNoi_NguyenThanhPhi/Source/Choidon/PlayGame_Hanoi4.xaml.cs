@@ -10,21 +10,15 @@ using Microsoft.Phone.Shell;
 using System.Windows.Media;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
-
-using ThapHaNoi_NguyenThanhPhi.Resources;
-
 using System.Data;
 using System.Text;
 using System.ComponentModel;
 using System.Reflection;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.GamerServices;
 using System.Windows.Threading;
 using System.Threading;
 using System.Windows.Media.Imaging;
-using System.IO;
-
 using System.Threading.Tasks;
+using ThapHaNoi_NguyenThanhPhi.Resources;
 
 namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
 {
@@ -71,11 +65,6 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             to = new Canvas();
             from.Name = to.Name = null;
 
-            //Khoi tao bo dem thoi gian DispatcherTimer
-            _timer = new DispatcherTimer();
-            _timer.Tick += new EventHandler(TimerTick);
-            _timer.Interval = new TimeSpan(0, 0, 0, 1);
-
             _effect = new DispatcherTimer();
             _effect.Tick += new EventHandler(EffectTick);
             _effect.Interval = new TimeSpan(0, 0, 0, 0, 200);
@@ -99,8 +88,16 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         ///       3.Dat lai thoi gian</work>
         private void RestartGame(int numDiskContinue)
         {
+            //Khoi tao bo dem thoi gian DispatcherTimer
+            _timer = new DispatcherTimer();
+            _timer.Tick += new EventHandler(TimerTick);
+            _timer.Interval = new TimeSpan(0, 0, 0, 1);
+
             //Xoa cac dia dang hien thi tren Canvas va luu tru trong stack
-            _pole[0].stack.Clear(); _pole[1].stack.Clear(); _pole[2].stack.Clear(); _pole[3].stack.Clear();
+            _pole[0].stack.Clear(); 
+            _pole[1].stack.Clear(); 
+            _pole[2].stack.Clear(); 
+            _pole[3].stack.Clear();
             CavasRodA.Children.Clear();
             CavasRodB.Children.Clear();
             CavasRodC.Children.Clear();
@@ -113,8 +110,8 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             moveCount = 0;
 
             //Them dia vao coc A 
-            _pole[0].Init(numDiskContinue, CavasRodA);
-            
+           _pole[0].Init(numDiskContinue, CavasRodA);
+ 
 
             //Visibility cac canvas bat dau choi va chien thang
             canvasStart.Visibility = Visibility.Collapsed;
@@ -136,7 +133,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         ///       3.Dat lai thoi gian</work>
         private void MoveTopDisk(DiskControl diskTab, Stack<DiskControl> stack)
         {
-            if (stack.Count == 0) return;
+            if (stack.Count.Equals(0)) return;
             diskTab = stack.Peek();
             txtThoigian.Text = diskTab.Tag.ToString();
             Canvas.SetTop(diskTab, 0);
@@ -156,42 +153,27 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             Stack<DiskControl> diskOfClickedRod = (Stack<DiskControl>)diskRod.Tag;
             if (firstClickedDisks == null)
             {
-                if (diskOfClickedRod.Count == 0) return;
+                if (diskOfClickedRod.Count.Equals(0)) return;
                 //firstClickedDisks = diskOfClickedRod;
                 from.Name = diskRod.Name;
 
                 switch (diskRod.Name)
                 {
                     case "CavasRodA":
-                        /*
-                        if (_pole[0].stack.Count == 0) break;
-                        diskTab = _pole[0].stack.Peek();
-                        Canvas.SetTop(diskTab, 0);
-                         * */
                         diskTab = _pole[0].SetTopDiskFromPole();
-
                         firstClickedDisks = _pole[0].stack;
                         break;
                     case "CavasRodB":
-                        if (_pole[1].stack.Count == 0) break;
-                        diskTab = _pole[1].stack.Peek();
-                        Canvas.SetTop(diskTab, 0);
-
+                        diskTab = _pole[1].SetTopDiskFromPole();
                         firstClickedDisks = _pole[1].stack;
                         break;
                     case "CavasRodC":
-                        if (_pole[2].stack.Count == 0) break;
-                        diskTab = _pole[2].stack.Peek();
-                        Canvas.SetTop(diskTab, 0);
-
+                        diskTab = _pole[2].SetTopDiskFromPole();
                         firstClickedDisks = _pole[2].stack;
                         break;
 
                     case "CavasRodD":
-                        if (_pole[3].stack.Count == 0) break;
-                        diskTab = _pole[3].stack.Peek();
-                        Canvas.SetTop(diskTab, 0);
-
+                        diskTab = _pole[3].SetTopDiskFromPole();
                         firstClickedDisks = _pole[3].stack;
                         break;
                     default:
@@ -201,24 +183,24 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             else if (secondClickedDisks == null)
             {
 
-                if (diskOfClickedRod == firstClickedDisks)
+                if (diskOfClickedRod.Equals(firstClickedDisks))
                 {
                     //Bo chon disk
                     switch (diskRod.Name)
                     {
                         case "CavasRodA":
-                            Canvas.SetTop(diskTab, (Contants.TopDisk - (_pole[0].stack.Count - 1) * Contants.SpaceDisk));
+                            Canvas.SetTop(diskTab, (Contants.TopDisk - (_pole[0].stack.Count - 1) * Contants.HEIGHTDISC));
                             break;
                         case "CavasRodB":
-                            Canvas.SetTop(diskTab, (Contants.TopDisk - (_pole[1].stack.Count - 1) * Contants.SpaceDisk));
+                            Canvas.SetTop(diskTab, (Contants.TopDisk - (_pole[1].stack.Count - 1) * Contants.HEIGHTDISC));
                             break;
 
                         case "CavasRodC":
-                            Canvas.SetTop(diskTab, (Contants.TopDisk - (_pole[2].stack.Count - 1) * Contants.SpaceDisk));
+                            Canvas.SetTop(diskTab, (Contants.TopDisk - (_pole[2].stack.Count - 1) * Contants.HEIGHTDISC));
                             break;
 
                         case "CavasRodD":
-                            Canvas.SetTop(diskTab, (Contants.TopDisk - (_pole[3].stack.Count - 1) * Contants.SpaceDisk));
+                            Canvas.SetTop(diskTab, (Contants.TopDisk - (_pole[3].stack.Count - 1) * Contants.HEIGHTDISC));
                             break;
                         default:
                             break;
@@ -243,7 +225,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         ///       3.Dat lai thoi gian</work>
         private void ProcessMovingDisk(Canvas diskRod)
         {
-            if (secondClickedDisks.Count == 0)
+            if (secondClickedDisks.Count.Equals(0))
             {
                 sounds.Play("click");
                 MoveDisk(from, to);
@@ -315,7 +297,6 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
                     break;
             }
 
-
             if (_pole[3].stack.Count == numDisk)
             {
                 _timer.Stop();
@@ -369,15 +350,12 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         {
             sounds.Play("click");
 
+            numDisk = int.Parse(listNumDisk.SelectedItem.ToString());
+            RestartGame(numDisk);
             _timer.Start();
             _effect.Start();
 
-            numDisk = int.Parse(listNumDisk.SelectedItem.ToString());
-            RestartGame(numDisk);
-
             canvasStart.Visibility = Visibility.Collapsed;
-            canvasWin.Visibility = Visibility.Collapsed;
-
         }
 
 
@@ -427,6 +405,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             //Tang so luong dia hien tai len 1 don vi
             numDisk = numDisk + 1;
             RestartGame(numDisk);
+            _timer.Start();
 
         }
 
@@ -452,13 +431,12 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
     
         private void btnChoiLai(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            _timer.Start();
-            canvasWin.Visibility = Visibility.Collapsed;
-
+            sounds.Play("click");
             //Lưu thông tin điểm số người chơi.
             func.UpdateTable(txtNguoichoi, txtThoigian, txtSolan, numDisk, 4);
-
+            canvasWin.Visibility = Visibility.Collapsed;
             RestartGame(numDisk);
+            _timer.Start();
         }
 
         private void BackKeyPress(object sender, CancelEventArgs e)

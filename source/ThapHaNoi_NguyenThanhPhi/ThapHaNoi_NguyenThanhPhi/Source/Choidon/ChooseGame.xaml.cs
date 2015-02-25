@@ -62,5 +62,10 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             sounds.Play("click");
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
+
+        private void LoadEvent(object sender, RoutedEventArgs e)
+        {
+            StoryboardChoose.Begin();
+        }
     }
 }

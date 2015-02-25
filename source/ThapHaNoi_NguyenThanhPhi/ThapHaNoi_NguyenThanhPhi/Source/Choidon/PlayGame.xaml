@@ -91,8 +91,7 @@
                         <ImageBrush Stretch="Uniform" ImageSource="/Assets/Background/Coc_c.png"/>
                     </Canvas.Background>
                 </Canvas>
-                <Image Source="/Assets/Icon/left-arrow-icon.png" Tap="imgBack" HorizontalAlignment="Left" Height="58" Margin="10,421,0,0" VerticalAlignment="Top" Width="64"/>
-            </Grid>
+              </Grid>
         </Grid>
 
         <Grid x:Name="Dieuhuong">
@@ -140,8 +139,9 @@
             <TextBlock Canvas.Left="167" TextWrapping="Wrap" Text="CHIẾN THẮNG" Canvas.Top="43" Height="42" Width="343" Foreground="#FFD61A11" FontSize="48" FontWeight="Bold"/>
 
         </Canvas>
+        <Image Source="/Assets/Icon/left-arrow-icon.png" Tap="imgBack" HorizontalAlignment="Left" Height="58" Margin="10,421,0,0" VerticalAlignment="Top" Width="64"/>
 
 
-    </Grid>
+   </Grid>
 
 </phone:PhoneApplicationPage>

@@ -227,7 +227,9 @@
     <Content Include="Help-and-support-icon.png" />
     <Content Include="icon title - large.png" />
     <Content Include="icon title - small.png" />
-    <Content Include="ServiceReferences.ClientConfig" />
+    <Content Include="ServiceReferences.ClientConfig">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Source\Thachdau\app.config" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
@@ -242,7 +244,6 @@
     </Content>
     <Content Include="Assets\Audio\bangxephang.wav" />
     <Content Include="Assets\Audio\click.wav" />
-    <Content Include="Assets\Audio\luachon.mp3" />
     <Content Include="Assets\Audio\main.wav" />
     <Content Include="Assets\Audio\thang.wav" />
     <Content Include="Assets\Audio\wrong.wav" />

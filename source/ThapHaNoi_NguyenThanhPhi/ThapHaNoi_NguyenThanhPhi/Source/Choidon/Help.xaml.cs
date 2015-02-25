@@ -46,6 +46,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         int moveCount = 0;
         int numDisk;
         int numRod;
+        bool firstLoad = true;
         private int[] comboNumDisk = { 3, 4, 5, 6, 7, 8, 9, 10 };
         
         DiskControl temp;
@@ -56,7 +57,6 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         {
             InitializeComponent();
             sounds.Stop("main");
-
             this.listNumDisk.ItemsSource = comboNumDisk;
             _pole[0] = new Pole(CavasRodA);
             _pole[1] = new Pole(CavasRodB);
@@ -67,6 +67,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             myWorker.DoWork += new DoWorkEventHandler(myWorker_DoWork);
             myWorker.ProgressChanged += new ProgressChangedEventHandler(myWorker_ProgressChanged);
             myWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(myWorker_RunWorkerCompleted);
+
 
         }
 
@@ -82,7 +83,11 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         private void RestartGame(int numDiskContinue)
         {
             //Xoa cac dia dang hien thi tren Canvas va luu tru trong stack
-            _pole[0].stack.Clear(); _pole[1].stack.Clear(); _pole[2].stack.Clear(); _pole[3].stack.Clear();
+            _pole[0].stack.Clear(); 
+            _pole[1].stack.Clear(); 
+            _pole[2].stack.Clear(); 
+            _pole[3].stack.Clear();
+
             CavasRodA.Children.Clear();
             CavasRodB.Children.Clear();
             CavasRodC.Children.Clear();
@@ -108,6 +113,11 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             NavigationService.Navigate(new Uri("/Source/Choidon/ChooseGame.xaml", UriKind.Relative));
         }
 
+        /// <summary>
+        /// SU KIEN NHAN VAO NUT BAT DAU TRO GIUP
+        /// </summary>
+        /// <param name="numDiskContinue"></param>
+        /// <purpose></purpose>
         private void Tap_Begin(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
@@ -118,14 +128,25 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             RestartGame(numDisk);
             btnBegin.Visibility = Visibility.Collapsed;
             btnBegin.Content = "Xem lại";
-            myWorker.RunWorkerAsync();
+
+            if (!myWorker.IsBusy)
+            {
+                myWorker.RunWorkerAsync();
+            }
+
         }
 
         private void AutoLoad(object sender, RoutedEventArgs e)
         {
-            numDisk = Convert.ToInt32(NavigationContext.QueryString["numDisk"]);
-            numRod = Convert.ToInt32(NavigationContext.QueryString["numRod"]);
+            if (firstLoad)
+            {
+                numRod = Convert.ToInt32(NavigationContext.QueryString["numRod"]);
+                numDisk = Convert.ToInt32(NavigationContext.QueryString["numDisk"]);
+                listNumDisk.SelectedItem = numDisk;
+                firstLoad = false;
+            }
             Load();
+            
         }
 
         void Load()
@@ -134,13 +155,9 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             MoveCalculation.miliseconds = (Int32)sliderSpeed.Value;
             if (numRod.Equals(3))
             {
-                RestartGame(numDisk);
                 CavasRodD.Visibility = Visibility.Collapsed;
             }
-            else
-            {
-                RestartGame(numDisk);
-            }
+            RestartGame(numDisk);
         }
 
         /// <summary>
@@ -201,7 +218,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         void myWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             btnBegin.Visibility = Visibility.Visible;
-            txtStep.Text += "Comlplete";
+            txtStep.Text += "Complete";
         }
 
         /// <summary>
@@ -213,7 +230,12 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             moveCount++;
             this.txtSolan.Text = moveCount.ToString();
             string[] valueMove = e.UserState.ToString().Split('/');
-            txtStep.Text += moveCount.ToString() +".Chuyển " + valueMove[0] + " qua " + valueMove[1] + "\n";
+            /*
+            TextBlock text = new TextBlock();
+            text.Text = moveCount.ToString() + ".Chuyển " + valueMove[0] + " qua " + valueMove[1] + "\n";
+             * */
+      
+            txtStep.Text += moveCount.ToString() + ".Chuyển " + valueMove[0] + " qua " + valueMove[1] + "\n";
             this.MakeMove(valueMove[0], valueMove[1]);
             MoveCalculation.miliseconds = speed;
         }
@@ -221,7 +243,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         /// <summary>
         /// HOAT DONG CUA WORKER
         /// </summary>
-        /// <purpose>Dieu thuong den trang luat choi</purpose>
+        /// <purpose></purpose>
         void myWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker work = sender as BackgroundWorker;
@@ -245,13 +267,15 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             {
                 NavigationService.Navigate(new Uri("/Source/Choidon/PlayGame_Hanoi4.xaml", UriKind.Relative));
             }
-            NavigationService.Navigate(new Uri("/Source/Choidon/ChooseGame.xaml", UriKind.Relative));
             
         }
 
-        private void listNumDisk_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void listNumDisk_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Dispatcher.BeginInvoke(new Action(() =>  numDisk = int.Parse(listNumDisk.SelectedItem.ToString()) ));            
+            Dispatcher.BeginInvoke(new Action(() => numDisk = int.Parse(listNumDisk.SelectedItem.ToString())));
+            Dispatcher.BeginInvoke(new Action(() => RestartGame(numDisk)));
+            
         }
+
     }
 }

@@ -44,6 +44,9 @@ namespace ThapHaNoi_NguyenThanhPhi
 
         /// <summary>
         /// TAO CO SO DU LIEU MOI
+        /// <work>
+        /// Kiểm tra CSDL tồn tại hay chưa. Nếu chưa thì khởi tạo CSDL mới và gọi hàm khởi tạo bảng thành tích cá nhân
+        /// </work>
         /// </summary>
         public void CreateLocalDatabase()
         {
@@ -62,6 +65,11 @@ namespace ThapHaNoi_NguyenThanhPhi
 
         /// <summary>
         /// KHOI TAO BANG THANH TICH CA NHAN
+        /// <work>TRƯỜNG HỢP 3 CỌC VÀ 4 CỌC
+        /// 1. Kiểm tra CSDL nếu tồn tại dữ liệu thì bỏ qua
+        /// 2. Khởi tạo dữ liệu thành tích chơi đơn cho 3, 4 cọc với số lượng đĩa từ MINNUMDISC đến MAXNUMDISC
+        /// 3. Lưu vào CSDL
+        /// </work>
         /// </summary>
         public void CreateTable()
         {
@@ -71,7 +79,7 @@ namespace ThapHaNoi_NguyenThanhPhi
                 ThanhTichChoiDon ttcdAdd3 = queryChoidon3.FirstOrDefault();
                 if (ttcdAdd3 == null)
                 {
-                    for (int i = 3; i <= 10; i++)
+                    for (int i = Contants.MINNUMDISC; i <= Contants.MAXNUMDISC; i++)
                     {
                         ThanhTichChoiDon ttcd = new ThanhTichChoiDon();
                         ttcd.STT = i - 2;
@@ -90,7 +98,7 @@ namespace ThapHaNoi_NguyenThanhPhi
                 ThanhTichChoiDon ttcdAdd4 = queryChoidon4.FirstOrDefault();
                 if (ttcdAdd4 == null)
                 {
-                    for (int i = 3; i <= 10; i++)
+                    for (int i = Contants.MINNUMDISC; i <= Contants.MAXNUMDISC4; i++)
                     {
                         ThanhTichChoiDon ttcd = new ThanhTichChoiDon();
                         ttcd.STT = 10 + i - 2;
@@ -108,6 +116,14 @@ namespace ThapHaNoi_NguyenThanhPhi
         }
         /// <summary>
         /// CAP NHAT BANG THANH TICH CA NHAN
+        /// <param name="sococ">Số cọc khi người chơi chọn gồm 3 cọc và 4 cọc</param>
+        /// <param name="solan">Số lần chuyển khi người chơi thắng cuộc</param>
+        /// <param name="tennguoichoi">Tên người chơi nhập vào để lưu. Mặc định là "Người chơi"</param>
+        /// <param name="sodia">Số đĩa người chơi chọn trước đó</param>
+        /// <param name="thoigian">Thời gian hoàn tất</param>
+        /// <work>1. Nếu số bước trong CSDL = 0 hoặc thời gian di chuyển thực tế nhỏ hơn thời gian trong CSDL thì tiến thành cập nhật
+        ///       2. Ngược lại nếu thời gian gian di chuyển thực tế  = thời gian trong CSDL thì xét đến số lần chuyển
+        ///       3. Số lần chuyển nhỏ hơn sẽ được cập nhật</work>
         /// </summary>
         public void UpdateTable(TextBox tennguoichoi, TextBlock thoigian, TextBlock solan, int sodia, int sococ)
         {
@@ -139,6 +155,10 @@ namespace ThapHaNoi_NguyenThanhPhi
             }
         }
 
+        /// <summary>
+        /// HAM DAT LAI GIA TRI NGAY THANG
+        /// <work>1. Nếu tham số nhỏ hơn 10 thì thêm vào số 0. Ngược lại không thêm vào</work>
+        /// </summary>
         string setDate(string stringDate)
         {
             if (Convert.ToInt32(stringDate.ToString()) < 10)
