@@ -89,7 +89,9 @@
         <TextBlock x:Name="txtSolve" HorizontalAlignment="Left" Margin="17,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
 
         <ScrollViewer x:Name="listHelp" HorizontalAlignment="Left" Height="416" Margin="597,66,0,0" VerticalAlignment="Top" Width="201">
-            <TextBlock x:Name="txtStep" Foreground="DarkBlue"/>
+            <StackPanel x:Name="stackList">
+                
+            </StackPanel>
         </ScrollViewer>
         <Slider x:Name="sliderSpeed" Minimum="400" Maximum="3000" SmallChange="100" Value="100" ValueChanged="slider_ValueChanged" HorizontalAlignment="Left" Margin="119,10,0,0" VerticalAlignment="Top" Width="341" Height="96"/>
 

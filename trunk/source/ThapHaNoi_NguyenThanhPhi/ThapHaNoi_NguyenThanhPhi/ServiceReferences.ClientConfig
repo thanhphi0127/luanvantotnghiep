@@ -2,16 +2,16 @@
     <system.serviceModel>
         <bindings>
             <basicHttpBinding>
-                <binding name="BasicHttpBinding_IService" maxBufferSize="2147483647"
+                <binding name="BasicHttpBinding_ITest" maxBufferSize="2147483647"
                     maxReceivedMessageSize="2147483647">
                     <security mode="None" />
                 </binding>
             </basicHttpBinding>
         </bindings>
         <client>
-            <endpoint address="http://localhost:8080/Service" binding="basicHttpBinding"
-                bindingConfiguration="BasicHttpBinding_IService" contract="TowerHanoiService.IService"
-                name="BasicHttpBinding_IService" />
+            <endpoint address="http://localhost:8001/test" binding="basicHttpBinding"
+                bindingConfiguration="BasicHttpBinding_ITest" contract="ServiceReference.ITest"
+                name="BasicHttpBinding_ITest" />
         </client>
     </system.serviceModel>
 </configuration>

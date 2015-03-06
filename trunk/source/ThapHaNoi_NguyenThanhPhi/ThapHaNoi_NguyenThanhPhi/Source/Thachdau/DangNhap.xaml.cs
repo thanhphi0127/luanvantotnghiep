@@ -7,14 +7,17 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using ThapHaNoi_NguyenThanhPhi.TowerHanoiService;
+
+
+//using ThapHaNoi_NguyenThanhPhi.TowerHanoiService;
 
 namespace ThapHaNoi_NguyenThanhPhi.Source.Thachdau
 {
     public partial class DangNhap : PhoneApplicationPage
     {
+        
         Sounds sounds = new Sounds();
-        ServiceClient proxy = new ServiceClient();
+        //ServiceClient proxy = new ServiceClient();
         public DangNhap()
         {
             InitializeComponent();
@@ -26,7 +29,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Thachdau
             NavigationService.Navigate(new Uri("/Source/Thachdau/Dangki.xaml", UriKind.Relative)); 
         }
 
-
+        /*
         void proxy_KiemTraTaiKhoanCompleted(object sender, KiemTraTaiKhoanCompletedEventArgs e)
         {
             try
@@ -47,6 +50,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Thachdau
             }
 
         }
+         * */
 
         private void btn_Dangnhap(object sender, System.Windows.Input.GestureEventArgs e)
         {
@@ -56,10 +60,10 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Thachdau
             }
             else
             {
-                
+                /*
                 proxy.KiemTraTaiKhoanCompleted += new EventHandler<KiemTraTaiKhoanCompletedEventArgs>(proxy_KiemTraTaiKhoanCompleted);
                 proxy.KiemTraTaiKhoanAsync(txtUsername.Text.ToString(), txtPassword.Password.ToString());
-
+                */
                 //hien thi thanh trang thai xu li
                 //customIndeterminateProgressBar.Visibility = Visibility.Visible;
                  
@@ -72,5 +76,6 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Thachdau
             sounds.Play("click");
             //NavigationService.Navigate(new Uri("/Source/Thachdau/Danhsachphongchoi.xaml", UriKind.Relative));
         }
+         
     }
 }

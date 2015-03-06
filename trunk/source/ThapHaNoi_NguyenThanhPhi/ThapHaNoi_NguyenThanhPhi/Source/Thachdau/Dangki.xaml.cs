@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using ThapHaNoi_NguyenThanhPhi.TowerHanoiService;
+using ThapHaNoi_NguyenThanhPhi.ServiceReference;
 
 namespace ThapHaNoi_NguyenThanhPhi.Source.Thachdau
 {

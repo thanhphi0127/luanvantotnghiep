@@ -63,7 +63,7 @@ namespace ThapHaNoi_NguyenThanhPhi
         }
 
         public static readonly DependencyProperty TextProperty =
-             DependencyProperty.Register("Text", typeof(string), typeof(DiskControl), new PropertyMetadata(default(string)));
+             DependencyProperty.Register("NumberText", typeof(string), typeof(DiskControl), new PropertyMetadata(null));
 
         public delegate void _Tap(DiskControl disk);
         public _Tap OnTap;

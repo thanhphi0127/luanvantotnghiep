@@ -65,7 +65,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
 
         private void LoadEvent(object sender, RoutedEventArgs e)
         {
-            StoryboardChoose.Begin();
+            //StoryboardChoose.Begin();
         }
     }
 }

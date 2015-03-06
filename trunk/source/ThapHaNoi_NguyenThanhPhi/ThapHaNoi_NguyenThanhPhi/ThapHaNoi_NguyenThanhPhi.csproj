@@ -111,7 +111,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Service References\TowerHanoiService\Reference.cs">
+    <Compile Include="Service References\ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -131,6 +131,9 @@
     </Compile>
     <Compile Include="Source\Choidon\PlayGame_Hanoi4.xaml.cs">
       <DependentUpon>PlayGame_Hanoi4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Choidon\TextControl.xaml.cs">
+      <DependentUpon>TextControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\Choidon\ThanhTichCaNhanControl.xaml.cs">
       <DependentUpon>ThanhTichCaNhanControl.xaml</DependentUpon>
@@ -186,6 +189,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Source\Choidon\TextControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Source\Choidon\ThanhTichCaNhanControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -212,24 +219,32 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TowerHanoiService\Service.xsd" />
-    <None Include="Service References\TowerHanoiService\Service1.xsd" />
-    <None Include="Service References\TowerHanoiService\Thachdau.wsdl" />
     <Content Include="Assets\Background\background_win.jpg" />
     <Content Include="Assets\Background\choosegame.jpg" />
     <Content Include="Assets\Background\image007.png" />
     <Content Include="Assets\Background\main.jpg" />
     <Content Include="Assets\Background\Coc_d.png" />
     <Content Include="Assets\Icon\4coc.png" />
+    <Content Include="Assets\Icon\3coc.png" />
     <Content Include="Assets\Icon\caidat.png" />
     <Content Include="Assets\Icon\help.png" />
     <Content Include="Assets\Icon\trangchu.png" />
     <Content Include="Help-and-support-icon.png" />
     <Content Include="icon title - large.png" />
     <Content Include="icon title - small.png" />
+    <None Include="Service References\ServiceReference\test.disco" />
+    <None Include="Service References\ServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReference\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Service References\ServiceReference\Test.wsdl" />
+    <None Include="Service References\ServiceReference\test.xsd" />
+    <None Include="Service References\ServiceReference\test1.xsd" />
     <None Include="Source\Thachdau\app.config" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
@@ -262,7 +277,6 @@
     <Content Include="Assets\Background\listphongchoi.jpg" />
     <Content Include="Assets\Background\list2.jpg" />
     <Content Include="Assets\Background\Xephangcanhan.jpg" />
-    <Content Include="Assets\Icon\1.png" />
     <Content Include="Assets\Icon\back.png" />
     <Content Include="Assets\Icon\delete.png" />
     <Content Include="Assets\Icon\choidon.ico" />
@@ -301,13 +315,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icon title.png" />
-    <None Include="Service References\TowerHanoiService\Service.disco" />
-    <None Include="Service References\TowerHanoiService\configuration91.svcinfo" />
-    <None Include="Service References\TowerHanoiService\configuration.svcinfo" />
-    <None Include="Service References\TowerHanoiService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
@@ -346,7 +353,7 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\TowerHanoiService\" />
+    <WCFMetadataStorage Include="Service References\ServiceReference\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

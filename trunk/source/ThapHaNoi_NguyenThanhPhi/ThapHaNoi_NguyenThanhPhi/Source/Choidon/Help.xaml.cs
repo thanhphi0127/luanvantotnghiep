@@ -127,6 +127,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             }
             RestartGame(numDisk);
             btnBegin.Visibility = Visibility.Collapsed;
+            listNumDisk.Visibility = Visibility.Collapsed;
             btnBegin.Content = "Xem lại";
 
             if (!myWorker.IsBusy)
@@ -151,7 +152,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
 
         void Load()
         {
-            txtStep.Text = "";
+            stackList.Children.Clear();
             MoveCalculation.miliseconds = (Int32)sliderSpeed.Value;
             if (numRod.Equals(3))
             {
@@ -218,7 +219,9 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         void myWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             btnBegin.Visibility = Visibility.Visible;
-            txtStep.Text += "Complete";
+            listNumDisk.Visibility = Visibility.Visible;
+            TextControl text = new TextControl(moveCount + 1, "Hoàn tất");
+            stackList.Children.Add(text);
         }
 
         /// <summary>
@@ -230,12 +233,12 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             moveCount++;
             this.txtSolan.Text = moveCount.ToString();
             string[] valueMove = e.UserState.ToString().Split('/');
-            /*
-            TextBlock text = new TextBlock();
-            text.Text = moveCount.ToString() + ".Chuyển " + valueMove[0] + " qua " + valueMove[1] + "\n";
-             * */
-      
-            txtStep.Text += moveCount.ToString() + ".Chuyển " + valueMove[0] + " qua " + valueMove[1] + "\n";
+
+            //txtStep.Text += moveCount.ToString() + ".Chuyển " + valueMove[0] + " qua " + valueMove[1] + "\n";
+
+            TextControl text = new TextControl(moveCount, "Chuyển " + valueMove[0] + " qua " + valueMove[1]);
+            stackList.Children.Add(text);
+
             this.MakeMove(valueMove[0], valueMove[1]);
             MoveCalculation.miliseconds = speed;
         }

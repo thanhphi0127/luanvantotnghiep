@@ -55,6 +55,7 @@ namespace ThapHaNoi_NguyenThanhPhi
             for (int i = 1; i <= numDisk; i++)
             {
                 DiskControl disc = new DiskControl(numDisk - i + 1);
+                disc.Text = (numDisk - i + 1).ToString();
                 disc.Width = 145 - 10 * i;
                 disc.Height = Contants.HEIGHTDISC - 1;
                 disc.Number = numDisk - i + 1;
