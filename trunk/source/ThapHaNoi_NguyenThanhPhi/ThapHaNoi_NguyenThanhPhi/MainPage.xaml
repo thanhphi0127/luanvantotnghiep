@@ -92,7 +92,7 @@
         <Image Source="/Assets/Logo/choidon.png" Tap="btn_Start_Tap"  HorizontalAlignment="Left" Height="49" Margin="157,336,0,0" Grid.Row="1" VerticalAlignment="Top" Width="335"/>
         <Image Source="/Assets/Logo/thanhtich.png" Tap="btnThanhtich" HorizontalAlignment="Left" Height="60" Margin="165,455,0,0" Grid.Row="1" VerticalAlignment="Top" Width="300"/>
         <Image Source="/Assets/Logo/huongdan.png" Tap="imgGioithieu" HorizontalAlignment="Left" Height="55" Margin="128,570,0,0" Grid.Row="1" VerticalAlignment="Top" Width="337"/>
-        <Image Source="/Assets/Icon/caidat.png" HorizontalAlignment="Left" Height="54" Margin="430,672,0,0" Grid.Row="1" VerticalAlignment="Top" Width="58"/>
+        <Image Source="/Assets/Icon/caidat.png" Tap="imgSeting" HorizontalAlignment="Left" Height="54" Margin="430,672,0,0" Grid.Row="1" VerticalAlignment="Top" Width="58"/>
         <TextBlock HorizontalAlignment="Left" Margin="364,686,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Cài đặt" VerticalAlignment="Top"/>
 
 

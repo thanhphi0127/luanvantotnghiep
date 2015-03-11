@@ -26,7 +26,7 @@
             <phone:PivotItem Header="3 Cọc" Margin="12,27,12,0">
                 <Grid Margin="0,-24,0,0">
                     <Canvas x:Name="canvasThanhtich3">
-                        <Image Height="101" Width="106" Source="/Assets/Icon/3coc.png" Canvas.Left="22"/>
+                        <Image Height="101" Width="106" Source="/Assets/Icon/33.png" Canvas.Left="22"/>
                         <TextBlock Canvas.Left="128" TextWrapping="Wrap" FontSize="25" Text="THÀNH TÍCH CÁ NHÂN" Canvas.Top="33"/>
                         <Image Tap="imgDeleteThanhTich3" Source="/Assets/Icon/delete.png" Height="50" Canvas.Left="170" Canvas.Top="600" Width="50"/>
                         <TextBlock Canvas.Left="237" TextWrapping="Wrap" Text="Xóa" Canvas.Top="610"/>
@@ -43,7 +43,7 @@
             <phone:PivotItem Header="4 Cọc">
                 <Grid Margin="0,-24,0,0">
                     <Canvas x:Name="canvasThanhtich4">
-                        <Image Height="100" Width="117" Source="/Assets/Icon/4coc.png" Canvas.Left="13"/>
+                        <Image Height="100" Width="117" Source="/Assets/Icon/44.png" Canvas.Left="13"/>
                         <TextBlock Canvas.Left="130" TextWrapping="Wrap" FontSize="25" Text="THÀNH TÍCH CÁ NHÂN" Canvas.Top="28"/>
                         <Image Tap="imgDeleteThanhTich4" Source="/Assets/Icon/delete.png" Height="50" Canvas.Left="174" Canvas.Top="599" Width="50"/>
                         <TextBlock Canvas.Left="237" TextWrapping="Wrap" Text="Xóa" Canvas.Top="610"/>
