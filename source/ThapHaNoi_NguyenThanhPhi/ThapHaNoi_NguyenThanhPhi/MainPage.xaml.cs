@@ -9,6 +9,11 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Windows.Media;
 using ThapHaNoi_NguyenThanhPhi.Resources;
+//using ThapHaNoi_NguyenThanhPhi.ServiceReference;
+using System.Diagnostics;
+using System.ServiceModel;
+
+using ThapHaNoi_NguyenThanhPhi.TestWCFWeb;
 
 namespace ThapHaNoi_NguyenThanhPhi
 {
@@ -123,6 +128,30 @@ namespace ThapHaNoi_NguyenThanhPhi
         private void LoadEvent(object sender, RoutedEventArgs e)
         {
             //StoryboardChoose.Begin();
+        }
+
+        private void imgSeting(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            sounds.Play("click");
+            Service1Client client = new Service1Client();
+            //TestClient client = new TestClient();
+            if (client == null)
+            {
+                MessageBox.Show("The answer is 1");
+                client.AddCompleted += new EventHandler<AddCompletedEventArgs>(client_AddCompleted);
+            }
+            MessageBox.Show("The answer is 2");
+            client.GetDataAsync(1);
+            MessageBox.Show("Async");
+
+        }
+
+        void client_AddCompleted(object sender, AddCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                MessageBox.Show("The answer is " + e.Result);
+            }
         }
 
     }

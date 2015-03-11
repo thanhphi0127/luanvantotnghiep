@@ -32,7 +32,7 @@ namespace ThapHaNoi_NguyenThanhPhi
         {
             InitializeComponent();
             Number = num;
-            NumberDisk.Text = Number.ToString();
+            NumberDisk.Text = num.ToString();
         }
 
         public override string ToString()
@@ -63,7 +63,7 @@ namespace ThapHaNoi_NguyenThanhPhi
         }
 
         public static readonly DependencyProperty TextProperty =
-             DependencyProperty.Register("NumberText", typeof(string), typeof(DiskControl), new PropertyMetadata(null));
+             DependencyProperty.Register("Text", typeof(string), typeof(DiskControl), new PropertyMetadata(null));
 
         public delegate void _Tap(DiskControl disk);
         public _Tap OnTap;
