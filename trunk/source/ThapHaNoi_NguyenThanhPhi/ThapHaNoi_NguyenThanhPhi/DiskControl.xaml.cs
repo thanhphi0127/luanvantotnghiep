@@ -19,26 +19,26 @@ namespace ThapHaNoi_NguyenThanhPhi
         private TranslateTransform move = new TranslateTransform();
         private TransformGroup rectangleTransforms = new TransformGroup();
 
-        public int Number { get; set; }
+       // public int Number { get; set; }
 
         public DiskControl()
         {
             InitializeComponent();
-            NumberDisk.Text = Number.ToString();
+            //NumberDisk.Text = Number.ToString();
         }
 
 
         public DiskControl(int num)
         {
             InitializeComponent();
-            Number = num;
+            //Number = num;
             NumberDisk.Text = num.ToString();
         }
 
-        public override string ToString()
-        {
-            return Number.ToString();
-        }
+        //public override string ToString()
+        //{
+            //return Number.ToString();
+        //}
 
         /*
         public override bool Equals(object obj)
@@ -56,14 +56,14 @@ namespace ThapHaNoi_NguyenThanhPhi
         }
          * */
 
-        public string Text
+        public static DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(String), typeof(TextBlock), null);
+
+        //This dependency property defined above will wrap the TextBlock's Text property
+        public String Text
         {
-            get { return (string)GetValue(TextProperty); }
+            get { return (String)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
-
-        public static readonly DependencyProperty TextProperty =
-             DependencyProperty.Register("Text", typeof(string), typeof(DiskControl), new PropertyMetadata(null));
 
         public delegate void _Tap(DiskControl disk);
         public _Tap OnTap;

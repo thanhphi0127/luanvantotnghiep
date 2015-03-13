@@ -33,7 +33,8 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         Sounds sounds = new Sounds();
         Function func = new Function();
 
-        TimeSpan time, effect;
+        TimeSpan effect;
+        private DateTime _startTime;
         private DispatcherTimer _timer, _effect;
         private TranslateTransform move = new TranslateTransform();
         private TransformGroup rectangleTransforms = new TransformGroup();
@@ -92,6 +93,8 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             _timer = new DispatcherTimer();
             _timer.Tick += new EventHandler(TimerTick);
             _timer.Interval = new TimeSpan(0, 0, 0, 1);
+
+            _startTime = DateTime.Now.AddSeconds(1);
 
             //Xoa cac dia dang hien thi tren Canvas va luu tru trong stack
             _pole[0].stack.Clear(); 
@@ -336,7 +339,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         /// <param name="numDiskContinue">Su dung de dem thoi gian, don vi 1 giay cap nhat 1 lan</param>
         void TimerTick(object sender, EventArgs e)
         {
-            time = time.Add(new TimeSpan(0, 0, 1));
+            var time = DateTime.Now - _startTime;
             txtThoigian.Text = string.Format(Contants.TimeFormat, time.Hours, time.Minutes, time.Seconds);
         }
 

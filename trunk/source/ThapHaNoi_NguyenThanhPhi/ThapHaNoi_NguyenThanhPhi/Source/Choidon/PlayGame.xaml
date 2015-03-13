@@ -72,7 +72,7 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Background="Transparent" Margin="0,0,0,53">
-            <Image Source="/Assets/Background/beach.jpg" Margin="0,-20,0,59"></Image>
+            <Image x:Name="imgBackground" Source="/Assets/Background/beach.jpg" Margin="0,-20,0,59"></Image>
             <Grid x:Name="Rod">
                 <Canvas x:Name="CavasRodA" Margin="98,41,482,58" Tap="Tap_Canvas" ManipulationDelta="CavasRodA_ManipulationDelta">
                     <Canvas.Background>
@@ -141,7 +141,9 @@
         </Canvas>
         <Image Source="/Assets/Icon/left-arrow-icon.png" Tap="imgBack" HorizontalAlignment="Left" Height="58" Margin="10,421,0,0" VerticalAlignment="Top" Width="64"/>
 
+        <Image Source="/Assets/Icon/reload.png" Tap="imgReload" HorizontalAlignment="Left" Height="58" Margin="736,422,0,0" VerticalAlignment="Top" Width="64"/>
 
-   </Grid>
+
+    </Grid>
 
 </phone:PhoneApplicationPage>

@@ -69,9 +69,9 @@
         <!--TitlePanel contains the name of the application and page title-->
         <!--ContentPanel - place additional content here-->
 
-        <Border x:Name="brdSound" BorderThickness="0,1,0,0" HorizontalAlignment="Left" Height="64" Margin="430,6,0,0" VerticalAlignment="Top" Width="64" Tap="btnSound_Tap">
+        <Border x:Name="brdSound" BorderThickness="0,1,0,0" HorizontalAlignment="Left" Height="58" Margin="430,6,0,0" VerticalAlignment="Top" Width="64" Tap="btnSound_Tap">
             <Border.Background>
-                <ImageBrush Stretch="None" ImageSource="Assets/Icon/Volume-Normal.png"/>
+                <ImageBrush Stretch="None" ImageSource="Assets/Icon/Volume-main.png"/>
             </Border.Background>
         </Border>
         
@@ -95,7 +95,7 @@
         <Image Source="/Assets/Icon/caidat.png" Tap="imgSeting" HorizontalAlignment="Left" Height="54" Margin="430,672,0,0" Grid.Row="1" VerticalAlignment="Top" Width="58"/>
         <TextBlock HorizontalAlignment="Left" Margin="364,686,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Cài đặt" VerticalAlignment="Top"/>
 
-
+        <Image Source="/Assets/Icon/Loading-white.gif" HorizontalAlignment="Left" Height="54" Margin="235,662,0,0" Grid.Row="1" VerticalAlignment="Top" Width="58"/>
 
 
     </Grid>
