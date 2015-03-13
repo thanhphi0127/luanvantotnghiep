@@ -130,23 +130,25 @@ namespace ThapHaNoi_NguyenThanhPhi
             //StoryboardChoose.Begin();
         }
 
+
+        private Service1Client client;
+
         private void imgSeting(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
-            Service1Client client = new Service1Client();
+            
             //TestClient client = new TestClient();
             if (client == null)
             {
-                MessageBox.Show("The answer is 1");
-                client.AddCompleted += new EventHandler<AddCompletedEventArgs>(client_AddCompleted);
+                client = new Service1Client(new BasicHttpBinding(), new EndpointAddress("http://localhost:32546/Service1.svc"));
+                client.GetDataCompleted += new EventHandler<GetDataCompletedEventArgs>(client_AddCompleted);
             }
-            MessageBox.Show("The answer is 2");
             client.GetDataAsync(1);
-            MessageBox.Show("Async");
+
 
         }
 
-        void client_AddCompleted(object sender, AddCompletedEventArgs e)
+        void client_AddCompleted(object sender, GetDataCompletedEventArgs e)
         {
             if (e.Error == null)
             {

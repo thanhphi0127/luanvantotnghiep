@@ -42,7 +42,8 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             Sounds sounds = new Sounds();
             Function func = new Function();
 
-            TimeSpan time;
+            //TimeSpan time;
+            private DateTime _startTime;
             private DispatcherTimer _timer;
             private TranslateTransform move = new TranslateTransform();
             private TransformGroup rectangleTransforms = new TransformGroup();
@@ -52,11 +53,18 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             //Cac bien cuc bo cho viec luu tru du lieu 
             private int moveCount = 0;
             private int numDisk = 3;
+            private int posImage = 0;
+            private string[] arrayImage = {"/Assets/Background/beach.jpg", 
+                                              "/Assets/Background/bg2.jpg", 
+                                              "/Assets/Background/bg3.jpg"};
+
             private int[] comboNumDisk = { 3, 4, 5, 6, 7, 8, 9, 10 };
 
             //Cac bien kieu giao dien de luu tru trang thai chuyen du lieu
             private Canvas from, to;
             private DiskControl diskTab, temp;
+
+
 
         #endregion
 
@@ -71,22 +79,11 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
             sounds.Stop("main");
             this.listNumDisk.ItemsSource = comboNumDisk;
 
-            _pole[0] = new Pole(CavasRodA);
-            _pole[1] = new Pole(CavasRodB);
-            _pole[2] = new Pole(CavasRodC);
-            
-            from = new Canvas();
-            to = new Canvas();
-            from.Name = to.Name = null;
-
             //Khoi tao bo dem thoi gian DispatcherTimer
+
             _timer = new DispatcherTimer();
             _timer.Tick += new EventHandler(TimerTick);
             _timer.Interval = new TimeSpan(0, 0, 0, 1);
-
-            //Visibility
-            //Rod.Visibility = Visibility.Collapsed;
-            //Dieuhuong.Visibility = Visibility.Collapsed;
 
         }
 
@@ -101,6 +98,22 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         ///       3.Dat lai thoi gian</work>
         private void RestartGame(int numDiskContinue)
         {
+            _pole[0] = new Pole(CavasRodA);
+            _pole[1] = new Pole(CavasRodB);
+            _pole[2] = new Pole(CavasRodC);
+
+            from = new Canvas();
+            to = new Canvas();
+            from.Name = to.Name = null;
+
+
+            _startTime = DateTime.Now.AddSeconds(1);
+            _timer.Start();
+
+            //Visibility
+            //Rod.Visibility = Visibility.Collapsed;
+            //Dieuhuong.Visibility = Visibility.Collapsed;
+
             //Xoa cac dia dang hien thi tren Canvas va luu tru trong stack
             _pole[0].stack.Clear(); _pole[1].stack.Clear(); _pole[2].stack.Clear();
             CavasRodA.Children.Clear();
@@ -322,7 +335,8 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         /// <param name="numDiskContinue">Su dung de dem thoi gian, don vi 1 giay cap nhat 1 lan</param>
         void TimerTick(object sender, EventArgs e)
         {
-            time = time.Add(new TimeSpan(0, 0, 1));
+            var time = DateTime.Now - _startTime;
+            //time = time.Add(new TimeSpan(0, 0, 1));
             txtThoigian.Text = string.Format(Contants.TimeFormat, time.Hours, time.Minutes, time.Seconds);
         }
 
@@ -335,9 +349,7 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         private void btnPlay_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             sounds.Play("click");
-            //sounds.Play("select");
-
-            _timer.Start();
+            
             numDisk = int.Parse(listNumDisk.SelectedItem.ToString());
             RestartGame(numDisk);
 
@@ -394,7 +406,9 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
 
             //Tang so luong dia hien tai len 1 don vi
             numDisk = numDisk + 1;
+            InitializeComponent();
             RestartGame(numDisk);
+            
 
         }
 
@@ -439,6 +453,17 @@ namespace ThapHaNoi_NguyenThanhPhi.Source.Choidon
         private void BackKeyPress(object sender, CancelEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Source/Choidon/ChooseGame.xaml", UriKind.Relative));
+        }
+
+        private void imgReload(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            posImage++;
+            int numImage = posImage % arrayImage.Count();
+            BitmapImage bm = new BitmapImage(new Uri(arrayImage[numImage], UriKind.Relative));
+            imgBackground.Source = bm;
+
+            RestartGame(numDisk);
+
         }
 
     }

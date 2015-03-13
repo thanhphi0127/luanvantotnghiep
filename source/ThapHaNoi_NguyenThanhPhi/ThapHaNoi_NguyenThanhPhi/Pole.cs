@@ -55,9 +55,10 @@ namespace ThapHaNoi_NguyenThanhPhi
             for (int i = 1; i <= numDisk; i++)
             {
                 DiskControl disc = new DiskControl(numDisk - i + 1);
+                //disc.Text = (numDisk - i + 1).ToString();
                 disc.Width = 145 - 10 * i;
                 disc.Height = Contants.HEIGHTDISC - 1;
-                disc.Number = numDisk - i + 1;
+                //disc.Number = numDisk - i + 1;
                 //disc.RectangleColor = _arrayColor[i - 1];
                 disc.Background = new SolidColorBrush(Colors.Blue);
                 
@@ -99,7 +100,6 @@ namespace ThapHaNoi_NguyenThanhPhi
                 DiskControl disc = new DiskControl(numDisk - i + 1);
                 disc.Width = 180 - 10 * i;
                 disc.Height = Contants.HEIGHTDISC4 - 1;
-                disc.Number = numDisk - i + 1;
                 //disc.RectangleColor = _arrayColor[i - 1];
                 disc.Background = new SolidColorBrush(Colors.Blue);
 
